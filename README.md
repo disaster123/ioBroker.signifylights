@@ -124,6 +124,7 @@ For later updates, the above procedure is not necessary. Just do the following:
 ## License
 MIT License
 
+Copyright (c) 2022 nxtstep <privat@konzeptplus.net>
 Copyright (c) 2023 disaster123 <stefan-iobroker@prie.be>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
