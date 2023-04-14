@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /*global systemDictionary:true */
 /*
 +===================== DO NOT MODIFY ======================+
@@ -8,136 +9,48 @@
 "use strict";
 
 systemDictionary = {
-	"signifylights adapter settings": {
-		"en": "Adapter settings for signifylights",
-		"de": "Adaptereinstellungen für signifylights",
-		"ru": "Настройки адаптера для signifylights",
-		"pt": "Configurações do adaptador para signifylights",
-		"nl": "Adapterinstellingen voor signifylights",
-		"fr": "Paramètres de l'adaptateur pour signifylights",
-		"it": "Impostazioni dell'adattatore per signifylights",
-		"es": "Configuración del adaptador para signifylights",
-		"pl": "Ustawienia adaptera dla signifylights",
-		"zh-cn": "signifylights 的适配器设置"
-	},
-	"active":      {
-		"en": "Active",
-		"de": "Aktiv",
-		"ru": "Активный",
-		"pt": "Ativo",
-		"nl": "Actief",
-		"fr": "Actif",
-		"it": "Attivo",
-		"es": "Activo",
-		"pl": "Aktywny",
-		"zh-cn": "积极的"
-	 },
-	 "addresses":   {
-		"en": "addresses to monitoring",
-		"de": "Adressen zur Überwachung",
-		"ru": "обращается к мониторингу",
-		"pt": "endereços para monitoramento",
-		"nl": "adressen voor monitoring",
-		"fr": "adresses de surveillance",
-		"it": "indirizzi di monitoraggio",
-		"es": "direcciones de seguimiento",
-		"pl": "adresy do monitoringu",
-		"zh-cn": "监控地址"
-	 },
-	 "interval":    {
-		"en": "Polling interval[sec]",
-		"de": "Abfrageintervall [Sek.]",
-		"ru": "Интервал опроса [сек]",
-		"pt": "Intervalo de sondagem[s]",
-		"nl": "Polling-interval [sec]",
-		"fr": "Intervalle d'interrogation[sec]",
-		"it": "Intervallo di polling[sec]",
-		"es": "Intervalo de sondeo [seg]",
-		"pl": "Interwał odpytywania[s]",
-		"zh-cn": "轮询间隔[秒]"
-	 },
-	 "ipaddress":   {
-		"en": "IP Address",
-		"de": "IP Adresse",
-		"ru": "Айпи адрес",
-		"pt": "Endereço de IP",
-		"nl": "IP adres",
-		"fr": "Adresse IP",
-		"it": "Indirizzo IP",
-		"es": "Dirección IP",
-		"pl": "Adres IP",
-		"zh-cn": "IP地址"
-	 },
-	 "name":        {
-		"en": "Name",
-		"de": "Name",
-		"ru": "Имя",
-		"pt": "Nome",
-		"nl": "Naam",
-		"fr": "Nom",
-		"it": "Nome",
-		"es": "Nombre",
-		"pl": "Nazwać",
-		"zh-cn": "姓名"
-	 },
-	 "settings":    {
-		"en": "Adapter settings",
-		"de": "Adaptereinstellungen",
-		"ru": "Настройки адаптера",
-		"pt": "Configurações do adaptador",
-		"nl": "Adapterinstellingen",
-		"fr": "Paramètres de l'adaptateur",
-		"it": "Impostazioni dell'adattatore",
-		"es": "Configuración del adaptador",
-		"pl": "Ustawienia adaptera",
-		"zh-cn": "适配器设置"
-	 },
-	 "bind_ip": {
-		 "en": "Bind IP-Adress",
-		 "de": "Lauschende IP-Adresse"
-		 "ru": "Привязать IP-адрес",
-		 "pt": "Vincular endereço IP",
-		 "nl": "Bind IP-adres",
-		 "fr": "Lier l'adresse IP",
-		 "it": "Associa indirizzo IP",
-		 "es": "Vincular dirección IP",
-		 "pl": "Powiąż adres IP",
-		 "zh-cn": "绑定 IP 地址"		 
-	  },
-	"register_devices": {
-		"en": "register devices for auto update",
-		"de": "Registrieren Sie Geräte für die automatische Aktualisierung",
-		"ru": "зарегистрировать устройства для автообновления",
-		"pt": "registrar dispositivos para atualização automática",
-		"nl": "apparaten registreren voor automatische update",
-		"fr": "enregistrer les appareils pour la mise à jour automatique",
-		"it": "registrare i dispositivi per l'aggiornamento automatico",
-		"es": "registrar dispositivos para actualización automática",
-		"pl": "zarejestruj urządzenia do automatycznej aktualizacji",
-		"zh-cn": "注册设备以进行自动更新"
-	},
-	"polling_intervall": {
-		"en": "polling intervall (sec)",
-		"de": "Polling-Intervall (Sek.)",
-		"ru": "интервал опроса (сек)",
-		"pt": "intervalo de votaçãol (s)",
-		"nl": "polling interval (sec)",
-		"fr": "intervalle d'interrogation (sec)",
-		"it": "intervallo di polling (sec)",
-		"es": "intervalo de sondeo (seg)",
-		"pl": "interwał odpytywania (s)",
-		"zh-cn": "轮询间隔（秒）"
-	},
-	"listed_online": {
-		"en": "treat as online (sec)",
-		"de": "als online behandeln (Sek.)",
-		"ru": "рассматривать как онлайн (сек)",
-		"pt": "tratar como online (s)",
-		"nl": "behandelen als online (sec)",
-		"fr": "traiter comme en ligne (sec)",
-		"it": "considera come online (sec)",
-		"es": "tratar como en línea (seg)",
-		"pl": "traktuj jako online (sek)",
-		"zh-cn": "视为在线（秒）"
-	},
+    "signifylights adapter settings": {
+        "en": "Adapter settings for signifylights",
+        "de": "Adaptereinstellungen für signifylights"
+    },
+    "active":      {
+        "en": "Active",
+        "de": "Aktiv"
+    },
+    "addresses":   {
+        "en": "addresses to monitoring",
+        "de": "Adressen zur Überwachung"
+    },
+    "interval":    {
+        "en": "Polling interval[sec]",
+        "de": "Abfrageintervall [Sek.]"
+    },
+    "ipaddress":   {
+        "en": "IP Address",
+        "de": "IP Adresse"
+    },
+    "name":        {
+        "en": "Name",
+        "de": "Name"
+    },
+    "settings":    {
+        "en": "Adapter settings",
+        "de": "Adaptereinstellungen"
+    },
+    "bind_ip": {
+        "en": "Bind IP-Adress",
+        "de": "Lauschende IP-Adresse"
+    },
+    "register_devices": {
+        "en": "register devices for auto update",
+        "de": "Registrieren Sie Geräte für die automatische Aktualisierung"
+    },
+    "polling_intervall": {
+        "en": "polling intervall (sec)",
+        "de": "Polling-Intervall (Sek.)"
+    },
+    "listed_online": {
+        "en": "treat as online (sec)",
+        "de": "als online behandeln (Sek.)"
+    },
 };
