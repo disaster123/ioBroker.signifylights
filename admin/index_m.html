@@ -2,22 +2,152 @@
 
 <head>
 
-    <!-- Load ioBroker scripts and styles-->
-    <link rel="stylesheet" type="text/css" href="../../css/adapter.css" />
-    <script type="text/javascript" src="../../socket.io/socket.io.js"></script>
+	<!-- Load ioBroker scripts and styles-->
+	<link rel="stylesheet" type="text/css" href="../../css/adapter.css" />
+	<link rel="stylesheet" type="text/css" href="../../lib/css/materialize.css">
 
-    <!-- Load our own files -->
-    <link rel="stylesheet" type="text/css" href="style.css" />
+	<script type="text/javascript" src="../../lib/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="../../socket.io/socket.io.js"></script>
+
+	<script type="text/javascript" src="../../js/translate.js"></script>
+	<script type="text/javascript" src="../../lib/js/materialize.js"></script>
+	<script type="text/javascript" src="../../js/adapter-settings.js"></script>
+
+	<!-- Load our own files -->
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<script type="text/javascript" src="words.js"></script>
+
+	<script type="text/javascript">
+	
+		var devices = [];
+		// This will be called by the admin adapter when the settings page loads
+		function load(settings, onChange) {
+			// example: select elements with id=key and class=value and insert value
+			if (!settings) return;
+			$('.value').each(function () {
+				var $key = $(this);
+				var id = $key.attr('id');
+				if ($key.attr('type') === 'checkbox') {
+					// do not call onChange direct, because onChange could expect some arguments
+					$key.prop('checked', settings[id])
+						.on('change', () => onChange())
+						;
+				} else {
+					// do not call onChange direct, because onChange could expect some arguments
+					$key.val(settings[id])
+						.on('change', () => onChange())
+						.on('keyup', () => onChange())
+						;
+				}
+			});
+						
+			devices    = settings.devices    || [];
+			onChange(false);
+			
+			values2table('devices', devices, onChange);
+			// reinitialize all the Materialize labels on the page if you are dynamically adding inputs:
+			if (M) M.updateTextFields();
+		}
+
+		// This will be called by the admin adapter when the user presses the save button
+		function save(callback) {
+			// example: select elements with class=value and build settings object
+			var obj = {};
+			$('.value').each(function () {
+				var $this = $(this);
+				if ($this.attr('type') === 'checkbox') {
+					obj[$this.attr('id')] = $this.prop('checked');
+				} else if ($this.attr('type') === 'number') {
+					obj[$this.attr('id')] = parseFloat($this.val());
+				} else {
+					obj[$this.attr('id')] = $this.val();
+				}
+			});
+			obj.devices = table2values('devices');
+			callback(obj);
+		}
+	</script>
 
 </head>
 
 <body>
 
-    <!-- this is where the React components are loaded into -->
-    <div class="m adapter-container" id="root"></div>
+	<div class="m adapter-container">
 
-    <!-- load compiled React scripts -->
-    <script type="text/javascript" src="build/index.js"></script>
+		<div class="row">
+			<div class="col s12">
+				<ul class="tabs">
+					<li class="tab col s2"><a href="#tab-main"    class="translate active">Main settings</a></li>
+					<li class="tab col s2"><a href="#tab-devices" class="translate">addresses</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Put your content here -->
+
+		<!-- For example columns with settings: -->
+		<div id="tab-main" class="col s12 page">
+			<div class="row">
+				<div class="col s12 m4 l2">
+					<img src="signifylights.png" class="logo">
+				</div>
+			</div>
+			<div class="row">
+				
+				<div class="col s4 input-field">
+					<input type="text" class="value" id="bind_ip" />
+					<label for="bind_ip" class="translate">Bind IP-Address</label>
+				</div>
+				<div class="col s4 input-field">
+					<input type="checkbox" class="value" id="register_devices" />
+					<label for="register_devices" class="translate">register devices for Auto update</label>
+				</div>
+	
+				<div class="col s4 input-field">
+					<input type="text" class="value" id="polling_intervall" />
+					<label for="polling_intervall" class="translate">Polling Interval</label>
+				</div>
+			</div>
+			<div class="row">				
+				<div class="col s4 input-field">
+					<input type="text" class="value" id="listed_online" />
+					<label for="listed_online" class="translate">treat as online (s)</label>
+				</div>
+			</div>
+			<div class="row">				
+				<div class="col s4 input-field">
+					<input type="text" class="value" id="udpip" />
+					<label for="udpip" class="translate">udp target ip for auto update</label>
+				</div>
+			</div>
+			<div class="row">				
+				<div class="col s4 input-field">
+					<input type="text" class="value" id="udpmac" />
+					<label for="udpmac" class="translate">udp mac adress for auto update</label>
+				</div>
+			</div>
+		</div>
+		<div id="tab-devices" class="col s12 page">
+				<div class="col s12" id="devices">
+					<a class="btn-floating waves-effect waves-light blue table-button-add"><i class="material-icons">add</i></a>
+					<div class="table-values-div">
+						<table class="table-values">
+							<thead>
+							<tr>
+								<th data-name="name" style="width: 50%" class="translate">name</th>
+								<th data-name="ip" style="width: 30%" class="translate">ipaddress</th>
+								<th data-name="active" style="width: 70px" data-style="width: 70px" data-type="checkbox" class="translate">enabled</th>
+								<th data-buttons="delete up down" style="width: 120px"></th>
+							</tr>
+							</thead>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+	</div>
 
 </body>
 
