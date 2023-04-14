@@ -1,0 +1,89 @@
+{
+    "common": {
+        "name": "signifylights",
+        "version": "0.0.1",
+        "news": {
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "uk": "Початкова версія",
+                "zh-cn": "首次出版"
+            }
+        },
+        "title": "SignifyLights",
+        "titleLang": {
+            "en": "SignifyLights",
+            "de": "SignifyLights",
+            "ru": "Сигнифайлайтс",
+            "pt": "SignifyLights",
+            "nl": "SignifyLichten",
+            "fr": "SignifyLumières",
+            "it": "SignifyLuci",
+            "es": "SignifyLuces",
+            "pl": "SignifyLights",
+            "uk": "SignifyLights",
+            "zh-cn": "意灯"
+        },
+        "desc": {
+            "en": "signifylights",
+            "de": "bedeuten Lichter",
+            "ru": "огни",
+            "pt": "luzes significativas",
+            "nl": "lichten betekenen",
+            "fr": "Signifylights",
+            "it": "signifylights",
+            "es": "significan luces",
+            "pl": "oznaczać światła",
+            "uk": "означати вогні",
+            "zh-cn": "表示灯"
+        },
+        "authors": [
+            "disaster123 <stefan-iobroker@prie.be>"
+        ],
+        "keywords": [
+            "wiz",
+            "signify",
+            "lights"
+        ],
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "signifylights.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/disaster123/ioBroker.signifylights/main/admin/signifylights.png",
+        "readme": "https://github.com/disaster123/ioBroker.signifylights/blob/main/README.md",
+        "loglevel": "info",
+        "mode": "daemon",
+        "type": "lighting",
+        "compact": true,
+        "connectionType": "local",
+        "dataSource": "push",
+        "adminUI": {
+            "config": "materialize"
+        },
+        "eraseOnUpload": true,
+        "dependencies": [
+            {
+                "js-controller": ">=3.3.22"
+            }
+        ],
+        "globalDependencies": [
+            {
+                "admin": ">=5.0.0"
+            }
+        ]
+    },
+    "native": {
+        "option1": true,
+        "option2": "42"
+    },
+    "objects": [],
+    "instanceObjects": []
+}
