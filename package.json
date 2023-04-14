@@ -1,11 +1,17 @@
 {
   "name": "iobroker.signifylights",
-  "version": "0.0.1",
-  "description": "signifylights",
+  "version": "0.0.6",
+  "description": "Signify Device Adapter",
   "author": {
     "name": "disaster123",
     "email": "stefan-iobroker@prie.be"
   },
+  "contributors": [
+    {
+      "name": "Sebastian Schwill",
+      "name": "Stefan Priebe"
+    }
+  ],
   "homepage": "https://github.com/disaster123/ioBroker.signifylights",
   "license": "MIT",
   "keywords": [
@@ -66,12 +72,6 @@
     "main.js"
   ],
   "scripts": {
-    "prebuild": "rimraf admin/build",
-    "build": "build-adapter react",
-    "watch": "build-adapter react --watch",
-    "prebuild:react": "rimraf admin/build",
-    "build:react": "build-adapter react",
-    "watch:react": "build-adapter react --watch",
     "test:js": "mocha --config test/mocharc.custom.json \"{!(node_modules|test)/**/*.test.js,*.test.js,test/**/test!(PackageFiles|Startup).js}\"",
     "test:package": "mocha test/package --exit",
     "test:integration": "mocha test/integration --exit",
