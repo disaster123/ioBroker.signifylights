@@ -1,7 +1,7 @@
 {
     "common": {
         "name": "signifylights",
-        "version": "0.0.1",
+    "version": "0.0.6",
         "news": {
             "0.0.1": {
                 "en": "initial release",
@@ -45,6 +45,7 @@
             "zh-cn": "表示灯"
         },
         "authors": [
+            "nxtstep <privat@konzeptplus.net>",
             "disaster123 <stefan-iobroker@prie.be>"
         ],
         "keywords": [
@@ -81,9 +82,35 @@
         ]
     },
     "native": {
-        "option1": true,
-        "option2": "42"
+        "udpip": "",
+        "updmac": "",
+        "bind_ip": "0.0.0.0",
+        "polling_intervall": 30,
+        "register_devices": true,
+        "listed_online": 30
     },
     "objects": [],
-    "instanceObjects": []
+    "instanceObjects": [
+        {
+            "_id": "info",
+            "type": "channel",
+            "common": {
+                "name": "Information"
+            },
+            "native": {}
+        },
+        {
+            "_id": "info.connection",
+            "type": "state",
+            "common": {
+                "role": "indicator.connected",
+                "name": "Device or service connected",
+                "type": "boolean",
+                "read": true,
+                "write": false,
+                "def": false
+            },
+            "native": {}
+        }
+    ]
 }
