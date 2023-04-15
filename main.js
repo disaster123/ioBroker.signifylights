@@ -352,7 +352,6 @@ class Signifylights extends utils.Adapter {
     async WIZ__GET_IOB_STATE(ip, key) {
         const client_ip = ip.replace(/\./g, '_');
         return await this.getStateAsync(client_ip+'.'+key);
-        //return await this.getStateAsync(client_ip+'.'+key);
     }
 
     /**
@@ -364,18 +363,24 @@ class Signifylights extends utils.Adapter {
         // Reset the connection indicator during startup
         this.setState("info.connection", false, true);
 
-        this.HOST = this.config.bind_ip;
-        this.MAC = this.config.udpmac.replace(/:/g, '').toUpperCase();
-        this.IP = this.config.udpip;
-        this.log.info("config bind_ip: " + this.config.bind_ip);
-        this.log.info("config udpmac: " + this.config.udpmac);
-        this.log.info("config udpip: " + this.config.udpip);
+        if (this.config.bind_ip && this.config.bind_ip.length > 0 &&
+            this.config.udpmac && this.config.udpmac.length > 0 &&
+            this.config.udpip && this.config.udpip.length > 0) {
+            this.HOST = this.config.bind_ip;
+            this.MAC = this.config.udpmac.replace(/:/g, '').toUpperCase();
+            this.IP = this.config.udpip;
+            this.log.info("config bind_ip: " + this.config.bind_ip);
+            this.log.info("config udpmac: " + this.config.udpmac);
+            this.log.info("config udpip: " + this.config.udpip);
 
-        await this.open_udp_sockets();
+            await this.open_udp_sockets();
 
-        await this.WIZ__INIT_ALL_DEVICES();
+            await this.WIZ__INIT_ALL_DEVICES();
 
-        this.setState('info.connection', true, true);
+            this.setState('info.connection', true, true);
+        } else {
+            this.log.error("adapter is unconfigured");
+        }
     }
 
     /**
