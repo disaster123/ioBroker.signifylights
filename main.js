@@ -27,7 +27,7 @@ class Signifylights extends utils.Adapter {
     constructor(options) {
         super({
             ...options,
-            name: "Signifylights",
+            name: "signifylights",
         });
 
         this.HOST = ip.address();//'0.0.0.0';
