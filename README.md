@@ -16,8 +16,8 @@ Signify Lights adapter for all Types of Signify WLAN lights like WIZ, Philips WL
 
 ### DISCLAIMER
 
-This project is not affiliated or related to WIZ, Signify or Philips. All brand and 
-product names are trademarks or registered trademarks of their respective holders. 
+This project is NOT affiliated with, funded, or in any way associated with WIZ, Signify
+or Philips. All brand and product names are trademarks or registered trademarks of their respective holders. 
 Reference to a company or a product name does not imply approval or recommendation of 
 that company or product to the exclusion of others.
 
