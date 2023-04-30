@@ -4,7 +4,17 @@
         "version": "0.0.6",
         "news": {
             "0.0.6": {
-                "de": "erstes offizielles Release"
+                "en": "first official release",
+                "de": "erste offizielle veröffentlichung",
+                "ru": "первый официальный релиз",
+                "pt": "primeiro lançamento oficial",
+                "nl": "vertaling:",
+                "fr": "premier communiqué officiel",
+                "it": "primo rilascio ufficiale",
+                "es": "primera liberación oficial",
+                "pl": "pierwsze oficjalne wydanie",
+                "uk": "перший офіційний реліз",
+                "zh-cn": "首次正式释放"
             },
             "0.0.1": {
                 "en": "initial release",
