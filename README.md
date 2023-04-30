@@ -22,7 +22,9 @@ Reference to a company or a product name does not imply approval or recommendati
 that company or product to the exclusion of others.
 
 ## Changelog
-* v0.0.6 - first release under new name
+
+### 0.0.6 (2023-04-30)
+* first release under new name
 
 ## License
 MIT License
