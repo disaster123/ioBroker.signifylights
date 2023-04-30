@@ -3,6 +3,9 @@
         "name": "signifylights",
         "version": "0.0.6",
         "news": {
+            "0.0.6": {
+                "de": "erstes offizielles Release"
+            },
             "0.0.1": {
                 "en": "initial release",
                 "de": "Erstveröffentlichung",
