@@ -1,5 +1,15 @@
 {
-    "signifylights adapter settings": "Adaptereinstellungen für signifylights",
+    "active": "",
+    "addresses": "",
+    "bind_ip": "",
+    "interval": "",
+    "ipaddress": "",
+    "listed_online": "",
+    "name": "",
     "option1": "Option 1",
-    "option2": "Option 2"
+    "option2": "Option 2",
+    "polling_intervall": "",
+    "register_devices": "",
+    "settings": "",
+    "signifylights adapter settings": "Adaptereinstellungen für signifylights"
 }

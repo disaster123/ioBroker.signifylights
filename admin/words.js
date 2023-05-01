@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /*global systemDictionary:true */
 /*
 +===================== DO NOT MODIFY ======================+
@@ -6,40 +5,20 @@
 | `translate-adapter adminLanguages2words` to update it.   |
 +===================== DO NOT MODIFY ======================+
 */
-"use strict";
+'use strict';
 
 systemDictionary = {
-    "signifylights adapter settings": {
-        "en": "Adapter settings for signifylights"
-    },
-    "active": {
-        "en": "Active"
-    },
-    "addresses":   {
-        "en": "addresses to monitoring"
-    },
-    "interval":    {
-        "en": "Polling interval[sec]"
-    },
-    "ipaddress":   {
-        "en": "IP Address"
-    },
-    "name":        {
-        "en": "Name"
-    },
-    "settings":    {
-        "en": "Adapter settings"
-    },
-    "bind_ip": {
-        "en": "Bind IP-Adress"
-    },
-    "register_devices": {
-        "en": "register devices for auto update"
-    },
-    "polling_intervall": {
-        "en": "polling intervall (sec)"
-    },
-    "listed_online": {
-        "en": "treat as online (sec)"
-    },
+    "signifylights adapter settings": {               "en": "Adapter settings for signifylights",               "de": "Adaptereinstellungen für signifylights",           "ru": "Настройки адаптера для signifylights",             "pt": "Configurações do adaptador para signifylights",    "nl": "Adapterinstellingen voor signifylights",           "fr": "Paramètres d'adaptateur pour signifylights",       "it": "Impostazioni dell'adattatore per signifylights",   "es": "Ajustes del adaptador para signifylights",         "pl": "Ustawienia adaptera dla signifylights",            "uk": "Налаштування адаптера для signifylights",          "zh-cn": "signifylights的适配器设置"},
+    "option1": {                                      "en": "option1",                                          "de": "Option 1",                                         "ru": "Опция 1",                                          "pt": "Opção 1",                                          "nl": "Optie 1",                                          "fr": "Option 1",                                         "it": "opzione 1",                                        "es": "Opción 1",                                         "pl": "opcja 1",                                          "uk": "варіант1",                                         "zh-cn": "选项1"},
+    "option2": {                                      "en": "option2",                                          "de": "Option 2",                                         "ru": "вариант 2",                                        "pt": "opção 2",                                          "nl": "Optie 2",                                          "fr": "Option 2",                                         "it": "opzione 2",                                        "es": "opcion 2",                                         "pl": "Opcja 2",                                          "uk": "варіант2",                                         "zh-cn": "选项2"},
+    "active": {                                       "en": "Active"},
+    "addresses": {                                    "en": "addresses to monitoring"},
+    "interval": {                                     "en": "Polling interval[sec]"},
+    "ipaddress": {                                    "en": "IP Address"},
+    "name": {                                         "en": "Name"},
+    "settings": {                                     "en": "Adapter settings"},
+    "bind_ip": {                                      "en": "Bind IP-Adress"},
+    "register_devices": {                             "en": "register devices for auto update"},
+    "polling_intervall": {                            "en": "polling intervall (sec)"},
+    "listed_online": {                                "en": "treat as online (sec)"},
 };
