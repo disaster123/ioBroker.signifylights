@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "signifylights",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "news": {
+      "0.1.1": {
+        "en": "fix setTimeout calls in async functions",
+        "de": "fixed Timeout Anrufe in Async-Funktionen",
+        "ru": "fix комплект Timeout звонки в функции async",
+        "pt": "conjunto de correção Chamadas de timeout em funções async",
+        "nl": "klaar. Quality over Quantity (QoQ) Releases Vertaling:",
+        "fr": "correction Timeout appelle dans les fonctions async",
+        "it": "set di correzione Timeout chiama in funzione asincrona",
+        "es": "juego Timeout llamadas en funciones asinc",
+        "pl": "ustawa Czasowe wezwanie do funkcji synchronizacyjnych",
+        "uk": "кріплення Часові дзвінки в функції async",
+        "zh-cn": "f 固定 D. 时间要求履行职能"
+      },
       "0.1.0": {
         "en": "various fixes and changes to become an official adapter",
         "de": "verschiedene fixierungen und änderungen zu einem offiziellen adapter werden",
