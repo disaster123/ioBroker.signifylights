@@ -22,6 +22,10 @@ Reference to a company or a product name does not imply approval or recommendati
 that company or product to the exclusion of others.
 
 ## Changelog
+
+### **WORK IN PROGRESS**
+* fix setTimeout calls in async functions
+
 ### 0.1.0 (2023-05-01)
 * various fixes and changes to become an official adapter
 
