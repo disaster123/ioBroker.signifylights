@@ -23,6 +23,9 @@ that company or product to the exclusion of others.
 
 ## Changelog
 
+### **WORK IN PROGRESS**
+* various fixes and changes to become an official adapter
+
 ### 0.0.6 (2023-04-30)
 * first release under new name
 
