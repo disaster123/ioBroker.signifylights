@@ -44,6 +44,8 @@ class Signifylights extends utils.Adapter {
 
         this.MESSAGEID = 1000;
 
+        this.POLLER = null;
+
         this.on("ready", this.onReady.bind(this));
         this.on("stateChange", this.onStateChange.bind(this));
         // this.on("objectChange", this.onObjectChange.bind(this));
@@ -393,6 +395,10 @@ class Signifylights extends utils.Adapter {
                 this.SOCKETS[i].close();
                 this.ISONLINE[i] = false;
             }
+            if (this.POLLER) {
+                clearInterval(this.POLLER);
+            }
+            // STEFAN
 
             callback();
         } catch (e) {
@@ -537,7 +543,7 @@ class Signifylights extends utils.Adapter {
             this.WIZ__GETSYSTEMCONFIG(ip);
             this.WIZ__GETPILOT(ip);
             if (this.config.polling_intervall > 0) {
-                setInterval(this.WIZ__GETPILOT.bind(this), this.config.polling_intervall*1000, ip);
+                this.POLLER = setInterval(this.WIZ__GETPILOT.bind(this), this.config.polling_intervall*1000, ip);
             }
 
             //this.log.debug(`__END ->  ${FUNCTION_NAME} [ ${ip} : ${name} ]`);
