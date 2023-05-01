@@ -10,65 +10,36 @@
 
 systemDictionary = {
     "signifylights adapter settings": {
-        "en": "Adapter settings for signifylights",
-        "de": "Adaptereinstellungen für Signifylights",
-        "ru": "Параметры адаптера для Signifylights",
-        "pt": "Configurações do adaptador para significar luzes",
-        "nl": "Adapter setting voor gebaren",
-        "fr": "Paramètres d'adaptateur pour les feux de signalisation",
-        "it": "Impostazioni adattatori per segnalibri",
-        "es": "Ajustes del adaptador para los focos de señalización",
-        "pl": "Adaptery oznaczają światło",
-        "uk": "Параметри адаптера для вивісок",
-        "zh-cn": "标志的标志环境"
+        "en": "Adapter settings for signifylights"
     },
     "active": {
-        "en": "Active",
-        "de": "Aktiv",
-        "ru": "Активно",
-        "pt": "Activo",
-        "nl": "Active",
-        "fr": "Active",
-        "it": "Attivo",
-        "es": "Activo",
-        "pl": "Aktywny",
-        "uk": "Активний",
-        "zh-cn": "精算师"
+        "en": "Active"
     },
     "addresses":   {
-        "en": "addresses to monitoring",
-        "de": "Adressen zur Überwachung"
+        "en": "addresses to monitoring"
     },
     "interval":    {
-        "en": "Polling interval[sec]",
-        "de": "Abfrageintervall [Sek.]"
+        "en": "Polling interval[sec]"
     },
     "ipaddress":   {
-        "en": "IP Address",
-        "de": "IP Adresse"
+        "en": "IP Address"
     },
     "name":        {
-        "en": "Name",
-        "de": "Name"
+        "en": "Name"
     },
     "settings":    {
-        "en": "Adapter settings",
-        "de": "Adaptereinstellungen"
+        "en": "Adapter settings"
     },
     "bind_ip": {
-        "en": "Bind IP-Adress",
-        "de": "Lauschende IP-Adresse"
+        "en": "Bind IP-Adress"
     },
     "register_devices": {
-        "en": "register devices for auto update",
-        "de": "Registrieren Sie Geräte für die automatische Aktualisierung"
+        "en": "register devices for auto update"
     },
     "polling_intervall": {
-        "en": "polling intervall (sec)",
-        "de": "Polling-Intervall (Sek.)"
+        "en": "polling intervall (sec)"
     },
     "listed_online": {
-        "en": "treat as online (sec)",
-        "de": "als online behandeln (Sek.)"
+        "en": "treat as online (sec)"
     },
 };
