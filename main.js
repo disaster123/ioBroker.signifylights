@@ -239,7 +239,7 @@ class Signifylights extends utils.Adapter {
                 }
             });
 
-            setTimeout(that.WIZ__SEND_MESSAGE, that.sendTimeout, ip, queueID, that);
+            this.setTimeout(that.WIZ__SEND_MESSAGE, that.sendTimeout, ip, queueID, that);
         } else if (ip in that.MESSAGEQUEUE && queueID in that.MESSAGEQUEUE[ip] && that.MESSAGEQUEUE[ip][queueID]['attempt'] >= that.maxAttempt) {
             that.log.warn(`Nachricht ${queueID} ${ip} ${realip} hat keine Antwort erhalten`);
             delete that.MESSAGEQUEUE[ip][queueID];
@@ -485,7 +485,7 @@ class Signifylights extends utils.Adapter {
 
             if (deviceType == "MINIMAL") {
                 // reschedule until we know device type...
-                setTimeout(function() {
+                this.setTimeout(function() {
                     that.WIZ__INIT_DEVICE(ip, name);
                 }, 5000);
             }
