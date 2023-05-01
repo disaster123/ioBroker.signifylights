@@ -401,7 +401,7 @@ class Signifylights extends utils.Adapter {
             if (this.POLLER) {
                 clearInterval(this.POLLER);
             }
-            for (var i in this.timeoutList) {
+            for (const i in this.timeoutList) {
                 clearTimeout(this.timeoutList[i]);
             }
             this.timeoutList = {};
