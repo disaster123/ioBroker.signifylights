@@ -11,11 +11,29 @@
 systemDictionary = {
     "signifylights adapter settings": {
         "en": "Adapter settings for signifylights",
-        "de": "Adaptereinstellungen für signifylights"
+        "de": "Adaptereinstellungen für Signifylights",
+        "ru": "Параметры адаптера для Signifylights",
+        "pt": "Configurações do adaptador para significar luzes",
+        "nl": "Adapter setting voor gebaren",
+        "fr": "Paramètres d'adaptateur pour les feux de signalisation",
+        "it": "Impostazioni adattatori per segnalibri",
+        "es": "Ajustes del adaptador para los focos de señalización",
+        "pl": "Adaptery oznaczają światło",
+        "uk": "Параметри адаптера для вивісок",
+        "zh-cn": "标志的标志环境"
     },
-    "active":      {
+    "active": {
         "en": "Active",
-        "de": "Aktiv"
+        "de": "Aktiv",
+        "ru": "Активно",
+        "pt": "Activo",
+        "nl": "Active",
+        "fr": "Active",
+        "it": "Attivo",
+        "es": "Activo",
+        "pl": "Aktywny",
+        "uk": "Активний",
+        "zh-cn": "精算师"
     },
     "addresses":   {
         "en": "addresses to monitoring",
