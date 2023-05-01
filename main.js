@@ -45,6 +45,7 @@ class Signifylights extends utils.Adapter {
         this.MESSAGEID = 1000;
 
         this.POLLER = null;
+        this.timeoutList = {};
 
         this.on("ready", this.onReady.bind(this));
         this.on("stateChange", this.onStateChange.bind(this));
@@ -239,7 +240,9 @@ class Signifylights extends utils.Adapter {
                 }
             });
 
-            this.setTimeout(that.WIZ__SEND_MESSAGE, that.sendTimeout, ip, queueID, that);
+            const timeoutid = this.setTimeout(that.WIZ__SEND_MESSAGE, that.sendTimeout, ip, queueID, that);
+            this.timeoutList[timeoutid] = true;
+
         } else if (ip in that.MESSAGEQUEUE && queueID in that.MESSAGEQUEUE[ip] && that.MESSAGEQUEUE[ip][queueID]['attempt'] >= that.maxAttempt) {
             that.log.warn(`Nachricht ${queueID} ${ip} ${realip} hat keine Antwort erhalten`);
             delete that.MESSAGEQUEUE[ip][queueID];
@@ -398,7 +401,10 @@ class Signifylights extends utils.Adapter {
             if (this.POLLER) {
                 clearInterval(this.POLLER);
             }
-            // STEFAN
+            for (var i in this.timeoutList) {
+                clearTimeout(this.timeoutList[i]);
+            }
+            this.timeoutList = {};
 
             callback();
         } catch (e) {
@@ -485,9 +491,10 @@ class Signifylights extends utils.Adapter {
 
             if (deviceType == "MINIMAL") {
                 // reschedule until we know device type...
-                this.setTimeout(function() {
+                const timeoutid = this.setTimeout(function() {
                     that.WIZ__INIT_DEVICE(ip, name);
                 }, 5000);
+                this.timeoutList[timeoutid] = true;
             }
 
             if (eval('typeof AllDeviceAttributes.'+deviceType+'() !== "undefined"')) {
