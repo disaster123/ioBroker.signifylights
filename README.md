@@ -22,8 +22,7 @@ Reference to a company or a product name does not imply approval or recommendati
 that company or product to the exclusion of others.
 
 ## Changelog
-
-### **WORK IN PROGRESS**
+### 0.1.0 (2023-05-01)
 * various fixes and changes to become an official adapter
 
 ### 0.0.6 (2023-04-30)

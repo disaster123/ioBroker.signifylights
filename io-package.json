@@ -1,129 +1,142 @@
 {
-    "common": {
-        "name": "signifylights",
-        "version": "0.0.6",
-        "news": {
-            "0.0.6": {
-                "en": "first official release",
-                "de": "erste offizielle veröffentlichung",
-                "ru": "первый официальный релиз",
-                "pt": "primeiro lançamento oficial",
-                "nl": "vertaling:",
-                "fr": "premier communiqué officiel",
-                "it": "primo rilascio ufficiale",
-                "es": "primera liberación oficial",
-                "pl": "pierwsze oficjalne wydanie",
-                "uk": "перший офіційний реліз",
-                "zh-cn": "首次正式释放"
-            },
-            "0.0.1": {
-                "en": "initial release",
-                "de": "Erstveröffentlichung",
-                "ru": "Начальная версия",
-                "pt": "lançamento inicial",
-                "nl": "Eerste uitgave",
-                "fr": "Première version",
-                "it": "Versione iniziale",
-                "es": "Versión inicial",
-                "pl": "Pierwsze wydanie",
-                "uk": "Початкова версія",
-                "zh-cn": "首次出版"
-            }
-        },
-        "title": "SignifyLights",
-        "titleLang": {
-            "en": "SignifyLights",
-            "de": "SignifyLights",
-            "ru": "Сигнифайлайтс",
-            "pt": "SignifyLights",
-            "nl": "SignifyLichten",
-            "fr": "SignifyLumières",
-            "it": "SignifyLuci",
-            "es": "SignifyLuces",
-            "pl": "SignifyLights",
-            "uk": "SignifyLights",
-            "zh-cn": "意灯"
-        },
-        "desc": {
-            "en": "signifylights",
-            "de": "bedeuten Lichter",
-            "ru": "огни",
-            "pt": "luzes significativas",
-            "nl": "lichten betekenen",
-            "fr": "Signifylights",
-            "it": "signifylights",
-            "es": "significan luces",
-            "pl": "oznaczać światła",
-            "uk": "означати вогні",
-            "zh-cn": "表示灯"
-        },
-        "authors": [
-            "nxtstep <privat@konzeptplus.net>",
-            "disaster123 <stefan-iobroker@prie.be>"
-        ],
-        "keywords": [
-            "wiz",
-            "signify",
-            "lights"
-        ],
-        "license": "MIT",
-        "platform": "Javascript/Node.js",
-        "main": "main.js",
-        "icon": "signifylights.png",
-        "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/disaster123/ioBroker.signifylights/main/admin/signifylights.png",
-        "readme": "https://github.com/disaster123/ioBroker.signifylights/blob/main/README.md",
-        "loglevel": "info",
-        "mode": "daemon",
-        "type": "lighting",
-        "compact": true,
-        "connectionType": "local",
-        "dataSource": "push",
-        "adminUI": {
-            "config": "materialize"
-        },
-        "eraseOnUpload": true,
-        "dependencies": [
-            {
-                "js-controller": ">=3.3.22"
-            }
-        ],
-        "globalDependencies": [
-            {
-                "admin": ">=5.0.0"
-            }
-        ]
+  "common": {
+    "name": "signifylights",
+    "version": "0.1.0",
+    "news": {
+      "0.1.0": {
+        "en": "various fixes and changes to become an official adapter",
+        "de": "verschiedene fixierungen und änderungen zu einem offiziellen adapter werden",
+        "ru": "различные исправления и изменения, чтобы стать официальным адаптером",
+        "pt": "várias correções e alterações para se tornar um adaptador oficial",
+        "nl": "verschillende middelen en veranderingen om een officiële adapter te worden",
+        "fr": "diverses corrections et changements pour devenir un adaptateur officiel",
+        "it": "varie correzioni e modifiche per diventare un adattatore ufficiale",
+        "es": "varios arreglos y cambios para convertirse en un adaptador oficial",
+        "pl": "zmiany i zmiany stały się oficjalnym adapterem",
+        "uk": "різні виправлення і зміни, щоб стати офіційним адаптером",
+        "zh-cn": "各种缺陷和变化成为官方适应者"
+      },
+      "0.0.6": {
+        "en": "first official release",
+        "de": "erste offizielle veröffentlichung",
+        "ru": "первый официальный релиз",
+        "pt": "primeiro lançamento oficial",
+        "nl": "vertaling:",
+        "fr": "premier communiqué officiel",
+        "it": "primo rilascio ufficiale",
+        "es": "primera liberación oficial",
+        "pl": "pierwsze oficjalne wydanie",
+        "uk": "перший офіційний реліз",
+        "zh-cn": "首次正式释放"
+      },
+      "0.0.1": {
+        "en": "initial release",
+        "de": "Erstveröffentlichung",
+        "ru": "Начальная версия",
+        "pt": "lançamento inicial",
+        "nl": "Eerste uitgave",
+        "fr": "Première version",
+        "it": "Versione iniziale",
+        "es": "Versión inicial",
+        "pl": "Pierwsze wydanie",
+        "uk": "Початкова версія",
+        "zh-cn": "首次出版"
+      }
     },
-    "native": {
-        "udpip": "",
-        "updmac": "",
-        "bind_ip": "0.0.0.0",
-        "polling_intervall": 30,
-        "register_devices": true,
-        "listed_online": 30
+    "title": "SignifyLights",
+    "titleLang": {
+      "en": "SignifyLights",
+      "de": "SignifyLights",
+      "ru": "Сигнифайлайтс",
+      "pt": "SignifyLights",
+      "nl": "SignifyLichten",
+      "fr": "SignifyLumières",
+      "it": "SignifyLuci",
+      "es": "SignifyLuces",
+      "pl": "SignifyLights",
+      "uk": "SignifyLights",
+      "zh-cn": "意灯"
     },
-    "objects": [],
-    "instanceObjects": [
-        {
-            "_id": "info",
-            "type": "channel",
-            "common": {
-                "name": "Information"
-            },
-            "native": {}
-        },
-        {
-            "_id": "info.connection",
-            "type": "state",
-            "common": {
-                "role": "indicator.connected",
-                "name": "Device or service connected",
-                "type": "boolean",
-                "read": true,
-                "write": false,
-                "def": false
-            },
-            "native": {}
-        }
+    "desc": {
+      "en": "signifylights",
+      "de": "bedeuten Lichter",
+      "ru": "огни",
+      "pt": "luzes significativas",
+      "nl": "lichten betekenen",
+      "fr": "Signifylights",
+      "it": "signifylights",
+      "es": "significan luces",
+      "pl": "oznaczać światła",
+      "uk": "означати вогні",
+      "zh-cn": "表示灯"
+    },
+    "authors": [
+      "nxtstep <privat@konzeptplus.net>",
+      "disaster123 <stefan-iobroker@prie.be>"
+    ],
+    "keywords": [
+      "wiz",
+      "signify",
+      "lights"
+    ],
+    "license": "MIT",
+    "platform": "Javascript/Node.js",
+    "main": "main.js",
+    "icon": "signifylights.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/disaster123/ioBroker.signifylights/main/admin/signifylights.png",
+    "readme": "https://github.com/disaster123/ioBroker.signifylights/blob/main/README.md",
+    "loglevel": "info",
+    "mode": "daemon",
+    "type": "lighting",
+    "compact": true,
+    "connectionType": "local",
+    "dataSource": "push",
+    "adminUI": {
+      "config": "materialize"
+    },
+    "eraseOnUpload": true,
+    "dependencies": [
+      {
+        "js-controller": ">=3.3.22"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=5.0.0"
+      }
     ]
+  },
+  "native": {
+    "udpip": "",
+    "updmac": "",
+    "bind_ip": "0.0.0.0",
+    "polling_intervall": 30,
+    "register_devices": true,
+    "listed_online": 30
+  },
+  "objects": [],
+  "instanceObjects": [
+    {
+      "_id": "info",
+      "type": "channel",
+      "common": {
+        "name": "Information"
+      },
+      "native": {}
+    },
+    {
+      "_id": "info.connection",
+      "type": "state",
+      "common": {
+        "role": "indicator.connected",
+        "name": "Device or service connected",
+        "type": "boolean",
+        "read": true,
+        "write": false,
+        "def": false
+      },
+      "native": {}
+    }
+  ]
 }
