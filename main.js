@@ -240,7 +240,7 @@ class Signifylights extends utils.Adapter {
                 }
             });
 
-            const timeoutid = setTimeout(that.WIZ__SEND_MESSAGE, that.sendTimeout, ip, queueID, that);
+            const timeoutid = this.setTimeout(that.WIZ__SEND_MESSAGE, that.sendTimeout, ip, queueID, that);
             this.timeoutList[timeoutid] = true;
 
         } else if (ip in that.MESSAGEQUEUE && queueID in that.MESSAGEQUEUE[ip] && that.MESSAGEQUEUE[ip][queueID]['attempt'] >= that.maxAttempt) {
@@ -491,7 +491,7 @@ class Signifylights extends utils.Adapter {
 
             if (deviceType == "MINIMAL") {
                 // reschedule until we know device type...
-                const timeoutid = setTimeout(function() {
+                const timeoutid = this.setTimeout(function() {
                     that.WIZ__INIT_DEVICE(ip, name);
                 }, 5000);
                 this.timeoutList[timeoutid] = true;
