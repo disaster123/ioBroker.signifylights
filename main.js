@@ -240,8 +240,14 @@ class Signifylights extends utils.Adapter {
                 }
             });
 
-            const timeoutid = this.setTimeout(that.WIZ__SEND_MESSAGE, that.sendTimeout, ip, queueID, that);
-            this.timeoutList[timeoutid] = true;
+            const timeoutid = that.setTimeout(function() {
+                that.WIZ__SEND_MESSAGE(ip, queueID, that);
+                delete that.timeoutList[timeoutid];
+            }, that.sendTimeout);
+            if (!timeoutid) {
+                that.log.error("ERROR ERROR NO timeoutid returned");
+            }
+            that.timeoutList[timeoutid] = true;
 
         } else if (ip in that.MESSAGEQUEUE && queueID in that.MESSAGEQUEUE[ip] && that.MESSAGEQUEUE[ip][queueID]['attempt'] >= that.maxAttempt) {
             that.log.warn(`Nachricht ${queueID} ${ip} ${realip} hat keine Antwort erhalten`);
@@ -491,10 +497,14 @@ class Signifylights extends utils.Adapter {
 
             if (deviceType == "MINIMAL") {
                 // reschedule until we know device type...
-                const timeoutid = this.setTimeout(function() {
+                const timeoutid = that.setTimeout(function() {
                     that.WIZ__INIT_DEVICE(ip, name);
+                    delete that.timeoutList[timeoutid];
                 }, 5000);
-                this.timeoutList[timeoutid] = true;
+                if (!timeoutid) {
+                    that.log.error("ERROR ERROR NO ${timeoutid} returned");
+                }
+                that.timeoutList[timeoutid] = true;
             }
 
             if (eval('typeof AllDeviceAttributes.'+deviceType+'() !== "undefined"')) {
