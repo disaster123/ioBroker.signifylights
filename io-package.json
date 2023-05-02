@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "signifylights",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "news": {
+      "0.2.0": {
+        "en": "more setTimeout fixes",
+        "de": "mehr Set Timeout-Behebungen",
+        "ru": "больше набор Исправления Timeout",
+        "pt": "mais conjunto Correções de timeout",
+        "nl": "meer. Time-out repareert",
+        "fr": "plus de réglage Timeout corrige",
+        "it": "più set Correzioni di timeout",
+        "es": "más set Timeout fixes",
+        "pl": "ustalony Timeout naprawia",
+        "uk": "докладніше Застібка часу",
+        "zh-cn": "增 编 时间安排"
+      },
       "0.1.1": {
         "en": "fix setTimeout calls in async functions",
         "de": "fixed Timeout Anrufe in Async-Funktionen",
