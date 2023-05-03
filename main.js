@@ -560,7 +560,7 @@ class Signifylights extends utils.Adapter {
             this.WIZ__GETSYSTEMCONFIG(ip);
             this.WIZ__GETPILOT(ip);
             if (this.config.polling_intervall > 0) {
-                this.POLLER = setInterval(this.WIZ__GETPILOT.bind(this), this.config.polling_intervall*1000, ip);
+                this.POLLER = this.setInterval(this.WIZ__GETPILOT.bind(this), this.config.polling_intervall*1000, ip);
             }
 
             //this.log.debug(`__END ->  ${FUNCTION_NAME} [ ${ip} : ${name} ]`);
