@@ -73,28 +73,28 @@
     "titleLang": {
       "en": "SignifyLights",
       "de": "SignifyLights",
-      "ru": "Сигнифайлайтс",
+      "ru": "SignifyLights",
       "pt": "SignifyLights",
-      "nl": "SignifyLichten",
-      "fr": "SignifyLumières",
-      "it": "SignifyLuci",
-      "es": "SignifyLuces",
+      "nl": "SignifyLights",
+      "fr": "SignifyLights",
+      "it": "SignifyLights",
+      "es": "SignifyLights",
       "pl": "SignifyLights",
       "uk": "SignifyLights",
-      "zh-cn": "意灯"
+      "zh-cn": "SignifyLights"
     },
     "desc": {
       "en": "signifylights",
-      "de": "bedeuten Lichter",
-      "ru": "огни",
-      "pt": "luzes significativas",
-      "nl": "lichten betekenen",
-      "fr": "Signifylights",
+      "de": "signifylights",
+      "ru": "signifylights",
+      "pt": "signifylights",
+      "nl": "signifylights",
+      "fr": "signifylights",
       "it": "signifylights",
-      "es": "significan luces",
-      "pl": "oznaczać światła",
-      "uk": "означати вогні",
-      "zh-cn": "表示灯"
+      "es": "signifylights",
+      "pl": "signifylights",
+      "uk": "signifylights",
+      "zh-cn": "signifylights"
     },
     "authors": [
       "nxtstep <privat@konzeptplus.net>",
