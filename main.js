@@ -389,7 +389,7 @@ class Signifylights extends utils.Adapter {
             await this.WIZ__INIT_ALL_DEVICES();
 
             this.setState('info.connection', true, true);
-        } else {
+        } else if (this.config.register_devices === true) {
             this.log.error("adapter is unconfigured");
         }
     }
