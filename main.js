@@ -374,23 +374,29 @@ class Signifylights extends utils.Adapter {
         // Reset the connection indicator during startup
         this.setState("info.connection", false, true);
 
-        if (this.config.bind_ip && this.config.bind_ip.length > 0 &&
-            this.config.udpmac && this.config.udpmac.length > 0 &&
-            this.config.udpip && this.config.udpip.length > 0) {
+        if (!(this.config.bind_ip && this.config.bind_ip.length > 0)) {
+            this.log.error("adapter is unconfigured, bind ip missing");
+        } else {
             this.HOST = this.config.bind_ip;
-            this.MAC = this.config.udpmac.replace(/:/g, '').toUpperCase();
-            this.IP = this.config.udpip;
-            this.log.info("config bind_ip: " + this.config.bind_ip);
-            this.log.info("config udpmac: " + this.config.udpmac);
-            this.log.info("config udpip: " + this.config.udpip);
+            this.log.info("config bind ip address: " + this.config.bind_ip);
+            if (this.config.register_devices === true && 
+                !(this.config.udpip && this.config.udpip.length > 0 &&
+                this.config.udpmac && this.config.udpmac.length > 0)) { 
+                this.log.error("adapter is unconfigured, udp target ip and/or udp mac address for auto update missing"); 
+            } else {
+                if (this.config.register_devices === true){
+                    this.log.info("config register devices for auto update: enabled");
+                    this.IP = this.config.udpip;
+                    this.log.info("config udp target IP for auto update: " + this.config.udpip);
+                    this.MAC = this.config.udpmac.replace(/:/g, '').toUpperCase();
+                    this.log.info("config udp mac address for auto update: " + this.MAC);               
+                }
+                await this.open_udp_sockets();
 
-            await this.open_udp_sockets();
+                await this.WIZ__INIT_ALL_DEVICES();
 
-            await this.WIZ__INIT_ALL_DEVICES();
-
-            this.setState('info.connection', true, true);
-        } else if (this.config.register_devices === true) {
-            this.log.error("adapter is unconfigured");
+                this.setState('info.connection', true, true);
+            }
         }
     }
 
