@@ -22,6 +22,13 @@ Reference to a company or a product name does not imply approval or recommendati
 that company or product to the exclusion of others.
 
 ## Changelog
+### **WORK IN PROGRESS**
+* several translation fixes
+* replace logo
+* use adapter interval instead of timeout
+* new DEVICES: ESP24_SHRGBC_01 + ESP25_SHWRGB_01 + ESP15_SHRGB1S_01I
+* config: allow to run without udp mac and ip set
+
 ### 0.2.0 (2023-05-02)
 * more setTimeout fixes
 
