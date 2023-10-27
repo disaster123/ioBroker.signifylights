@@ -22,7 +22,7 @@ Reference to a company or a product name does not imply approval or recommendati
 that company or product to the exclusion of others.
 
 ## Changelog
-### **WORK IN PROGRESS**
+### 0.3.0 (2023-10-27)
 * several translation fixes
 * replace logo
 * use adapter interval instead of timeout

@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "signifylights",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "news": {
+      "0.3.0": {
+        "en": "several translation fixes\nreplace logo\nuse adapter interval instead of timeout\nnew DEVICES: ESP24_SHRGBC_01 + ESP25_SHWRGB_01 + ESP15_SHRGB1S_01I\nconfig: allow to run without udp mac and ip set",
+        "de": "mehrere übersetzungsfixes\nersetzen logo\nadapterintervall anstelle von timeout verwenden\nneue DEVICEs: ESP24_SHRGBC_01 + ESP25_SHWRGB_01 + ESP15_SHRGB1S_01I\nconfig: ohne udp mac und ip set laufen lassen",
+        "ru": "несколько исправлений перевода\nзаменить логотип\nиспользовать интервал адаптера вместо timeout\nновые устройства: ESP24_SHRGBC_01 + ESP25_SHWRGB_01 + ESP15_SHRGB1S_01I\nconfig: позвольте работать без udp mac и ip set",
+        "pt": "várias correções de tradução\nsubstituir o logotipo\nusar intervalo do adaptador em vez de timeout\nnovos DEVICES: ESP24_SHRGBC_01 + ESP25_SHWRGB_01 + ESP15_SHRGB1S_01I\nconfig: permitir executar sem udp mac e ip set",
+        "nl": "vertaling:\nvervang logo\ngebruik adapter interval in plaats van time-out\nvertaling:\nmogen we vluchten zonder udp mac en ip set",
+        "fr": "plusieurs corrections de traduction\nremplacer le logo\nutiliser l'intervalle d'adaptateur au lieu de timeout\ndEVICES : ESP24_SHRGBC_01 + ESP25_SHWRGB_01 + ESP15_SHRGB1S_01I\nconfig: permettre de fonctionner sans udp mac et ip set",
+        "it": "diverse correzioni di traduzione\nsostituisci il logo\nutilizzare l'intervallo di adattatore invece di timeout\neSP24_SHRGBC_01 + ESP25_SHWRGB_01 + ESP15_SHRGB1S_01I\nconfig: consentire di eseguire senza udp mac e ip set",
+        "es": "varios arreglos de traducción\nsustitución del logo\nuso de intervalo de adaptador en lugar de tiempo\ndEVICES: ESP24_SHRGBC_01 + ESP25_SHWRGB_01 + ESP15_SHRGB1S_01I\nconfig: permitir correr sin udp mac y ip set",
+        "pl": "tłumaczenie\nlogo\nprzedział adaptacyjny zamiast czasu\nnowe DEVICES: ESP24_SHRGBC_01 + ESP25_SHWRGB_01 + ESP15_SHRGB1S_01I\nkonfiguracja: umożliwia prowadzenie bez udp mac i ip set",
+        "uk": "кілька фіксаторів перекладу\nзамінити логотип\nвикористовувати інтервал адаптера замість часу\neSP24_SHRGBC_01 + ESP25_SHWRGB_01 + ESP15_SHRGB1S_01I\nconfig: дозволити запустити без udp mac і ip набір",
+        "zh-cn": "几个翻译袋\n替换逻辑\n使用适应器而不是时间断\n新的DEVICES:ESP24_SHRGBC_01+ESP25_SHWRGB_01+ESP15_SHRGB1S_01I\nconfig:允许无可言和可选"
+      },
       "0.2.0": {
         "en": "more setTimeout fixes",
         "de": "mehr Set Timeout-Behebungen",
