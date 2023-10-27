@@ -379,17 +379,17 @@ class Signifylights extends utils.Adapter {
         } else {
             this.HOST = this.config.bind_ip;
             this.log.info("config bind ip address: " + this.config.bind_ip);
-            if (this.config.register_devices === true && 
+            if (this.config.register_devices === true &&
                 !(this.config.udpip && this.config.udpip.length > 0 &&
-                this.config.udpmac && this.config.udpmac.length > 0)) { 
-                this.log.error("adapter is unconfigured, udp target ip and/or udp mac address for auto update missing"); 
+                this.config.udpmac && this.config.udpmac.length > 0)) {
+                this.log.error("adapter is unconfigured, udp target ip and/or udp mac address for auto update missing");
             } else {
                 if (this.config.register_devices === true){
                     this.log.info("config register devices for auto update: enabled");
                     this.IP = this.config.udpip;
                     this.log.info("config udp target IP for auto update: " + this.config.udpip);
                     this.MAC = this.config.udpmac.replace(/:/g, '').toUpperCase();
-                    this.log.info("config udp mac address for auto update: " + this.MAC);               
+                    this.log.info("config udp mac address for auto update: " + this.MAC);
                 }
                 await this.open_udp_sockets();
 
