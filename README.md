@@ -14,6 +14,8 @@
 
 Signify Lights adapter for all Types of Signify WLAN lights like WIZ, Philips WLAN and many more...
 
+Questions and discussion here: https://forum.iobroker.net/topic/69656/test-adapter-signifylights
+
 ### DISCLAIMER
 
 This project is NOT affiliated with, funded, or in any way associated with WIZ, Signify
