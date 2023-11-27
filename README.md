@@ -24,7 +24,7 @@ Reference to a company or a product name does not imply approval or recommendati
 that company or product to the exclusion of others.
 
 ## Changelog
-### **WORK IN PROGRESS**
+### 0.3.1 (2023-11-27)
 * fix scenes for ESP03_SHTWP_31, ESP24_SHRGBW_01, ESP06_SHTW1_01
 * retry to release v0.3.1
 

@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "signifylights",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "news": {
+      "0.3.1": {
+        "en": "fix scenes for ESP03_SHTWP_31, ESP24_SHRGBW_01, ESP06_SHTW1_01\nretry to release v0.3.1",
+        "de": "fix-Szenen für ESP03_SHTWP_31, ESP24_SHRGBW_01, ESP06_SHTW1_01\nretry to release v0.3.1",
+        "ru": "исправить сцены для ESP03_SHTWP_31, ESP24_SHRGBW_01, ESP06_SHTW1_01\nretry для релиза v0.3.1",
+        "pt": "corrigir cenas para ESP03_SHTWP_31, ESP24_SHRGBW_01, ESP06_SHTW1_01\ntentar liberar v0.3.1",
+        "nl": "vertaling:\n_",
+        "fr": "fixer des scènes pour ESP03_SHTWP_31, ESP24_SHRGBW_01, ESP06_SHTW1_01\nretry to release v0.3.1",
+        "it": "scene di correzione per ESP03_SHTWP_31, ESP24_SHRGBW_01, ESP06_SHTW1_01\nretry to release v0.3.1",
+        "es": "escenas de fijación para ESP03_SHTWP_31, ESP24_SHRGBW_01, ESP06_SHTW1_01\nretry to release v0.3.1",
+        "pl": "zdjęcia do ESP03_SHTWP_31\npowtórne wydanie v0.3.1",
+        "uk": "javaScript licenses API Веб-сайт Go1.13.8\nдо релізу v0.3.1",
+        "zh-cn": "fix ESP03_SHTWP_31, ESP24_SHRGBW_01, ESP06_SHTW1_01\n恢复原状"
+      },
       "0.3.0": {
         "en": "several translation fixes\nreplace logo\nuse adapter interval instead of timeout\nnew DEVICES: ESP24_SHRGBC_01 + ESP25_SHWRGB_01 + ESP15_SHRGB1S_01I\nconfig: allow to run without udp mac and ip set",
         "de": "mehrere übersetzungsfixes\nersetzen logo\nadapterintervall anstelle von timeout verwenden\nneue DEVICEs: ESP24_SHRGBC_01 + ESP25_SHWRGB_01 + ESP15_SHRGB1S_01I\nconfig: ohne udp mac und ip set laufen lassen",
