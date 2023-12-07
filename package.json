@@ -23,7 +23,7 @@
     "url": "https://github.com/disaster123/ioBroker.signifylights.git"
   },
   "engines": {
-    "node": ">= 14"
+    "node": ">= 16"
   },
   "dependencies": {
     "@iobroker/adapter-core": "^2.6.8",
