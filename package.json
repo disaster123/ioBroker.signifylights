@@ -16,7 +16,8 @@
   "keywords": [
     "wiz",
     "signify",
-    "lights"
+    "lights",
+    "ioBroker"
   ],
   "repository": {
     "type": "git",
