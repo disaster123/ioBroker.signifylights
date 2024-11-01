@@ -119,7 +119,7 @@
       "signify",
       "lights"
     ],
-    "licenseInformation": "MIT",
+    "license": "MIT",
     "platform": "Javascript/Node.js",
     "icon": "signifylights.png",
     "enabled": true,
