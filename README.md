@@ -24,7 +24,7 @@ Reference to a company or a product name does not imply approval or recommendati
 that company or product to the exclusion of others.
 
 ## Changelog
-### **WORK IN PROGRESS**
+### 0.4.0 (2024-11-01)
 * add ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL
 * add ESP25_SHRGB_01: added (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)
 * various stuff from adapter check
