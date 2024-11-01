@@ -2,6 +2,7 @@
   "common": {
     "name": "signifylights",
     "version": "0.3.1",
+    "tier": 3,
     "news": {
       "0.3.1": {
         "en": "fix scenes for ESP03_SHTWP_31, ESP24_SHRGBW_01, ESP06_SHTW1_01\nretry to release v0.3.1",
@@ -118,9 +119,8 @@
       "signify",
       "lights"
     ],
-    "license": "MIT",
+    "licenseInformation": "MIT",
     "platform": "Javascript/Node.js",
-    "main": "main.js",
     "icon": "signifylights.png",
     "enabled": true,
     "extIcon": "https://raw.githubusercontent.com/disaster123/ioBroker.signifylights/main/admin/signifylights.png",
