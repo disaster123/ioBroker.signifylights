@@ -1,9 +1,22 @@
 {
   "common": {
     "name": "signifylights",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "tier": 3,
     "news": {
+      "0.4.1": {
+        "en": "fix eslint 9.x",
+        "de": "fix eslint 9.x",
+        "ru": "исправить eslint 9.x",
+        "pt": "corrigir eslint 9.x",
+        "nl": "repareren eslint 9.x",
+        "fr": "fixer eslint 9.x",
+        "it": "fix eslint 9.x",
+        "es": "fijar eslint 9.x",
+        "pl": "fix eslint 9.x",
+        "uk": "фіксатор eslint 9.x",
+        "zh-cn": "修复 eslint 9.x"
+      },
       "0.4.0": {
         "en": "add ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\nadd ESP25_SHRGB_01: added (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nvarious stuff from adapter check",
         "de": "eSP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\neSP25_SHRGB_01: hinzugefügt (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nverschiedene sachen aus adapter überprüfen",
@@ -81,19 +94,6 @@
         "pl": "zmiany i zmiany stały się oficjalnym adapterem",
         "uk": "різні виправлення і зміни, щоб стати офіційним адаптером",
         "zh-cn": "各种缺陷和变化成为官方适应者"
-      },
-      "0.0.6": {
-        "en": "first official release",
-        "de": "erste offizielle veröffentlichung",
-        "ru": "первый официальный релиз",
-        "pt": "primeiro lançamento oficial",
-        "nl": "vertaling:",
-        "fr": "premier communiqué officiel",
-        "it": "primo rilascio ufficiale",
-        "es": "primera liberación oficial",
-        "pl": "pierwsze oficjalne wydanie",
-        "uk": "перший офіційний реліз",
-        "zh-cn": "首次正式释放"
       }
     },
     "title": "SignifyLights",
