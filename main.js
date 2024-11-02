@@ -419,7 +419,7 @@ class Signifylights extends utils.Adapter {
             this.timeoutList = {};
 
             callback();
-        } catch (e) {
+        } catch {
             callback();
         }
     }
