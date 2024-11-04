@@ -5,30 +5,17 @@
     "tier": 3,
     "news": {
       "0.4.1": {
-        "en": "fix eslint 9.x",
-        "de": "fix eslint 9.x",
-        "ru": "исправить eslint 9.x",
-        "pt": "corrigir eslint 9.x",
-        "nl": "repareren eslint 9.x",
-        "fr": "fixer eslint 9.x",
-        "it": "fix eslint 9.x",
-        "es": "fijar eslint 9.x",
-        "pl": "fix eslint 9.x",
-        "uk": "фіксатор eslint 9.x",
-        "zh-cn": "修复 eslint 9.x"
-      },
-      "0.4.0": {
-        "en": "add ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\nadd ESP25_SHRGB_01: added (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nvarious stuff from adapter check",
-        "de": "eSP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\neSP25_SHRGB_01: hinzugefügt (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nverschiedene sachen aus adapter überprüfen",
-        "ru": "добавить ESP26_SHRGB_01: Wi-Fi BLE ST64 E27 822-65 RGB CL\nдобавить ESP25_SHRGB_01: добавлен (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nразличные вещи из адаптера",
-        "pt": "adicionar ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\nadd ESP25_SHRGB_01: adicionado (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nvárias coisas da verificação do adaptador",
-        "nl": "eSP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL toevoegen\neSP25_SHRGB_01 toevoegen: toegevoegd (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\ndiverse spullen van adapter controle",
-        "fr": "ajouter ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\najouter ESP25_SHRGB_01: ajouté (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\ndifférentes choses de vérification de l'adaptateur",
-        "it": "aggiungi ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\naggiungere ESP25_SHRGB_01: aggiunto (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nvarie cose dal controllo dell'adattatore",
-        "es": "añadir ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\nañadir ESP25_SHRGB_01: añadido (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nvarias cosas de la comprobación del adaptador",
-        "pl": "dodaj ESP26 _ SHRGB _ 01: WIZ Wi- Fi BLE ST64 E27 822- 65 RGB CL\ndodaj ESP25 _ SHRGB _ 01: dodany (WiZ Wi- Fi BLE 60W A60 E27 822- 65 RGB)\nróżne rzeczy z kontroli adaptera",
-        "uk": "eSP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\nadd ESP25_SHRGB_01: доданий (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nрізні речі з перевірки адаптера",
-        "zh-cn": "添加 ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\n添加 ESP25_SHRGB_01: 添加(WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\n适配器检查中的各种内容"
+        "en": "fix eslint 9.x\nadd ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\nadd ESP25_SHRGB_01: added (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nvarious improvements from adapter check",
+        "de": "fix eslint 9.x\nESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL hinzugefügt\nESP25_SHRGB_01: hinzugefügt (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nverschiedene Verbesserungen aus der Adapterprüfung",
+        "ru": "исправить eslint 9.x\nдобавить ESP26_SHRGB_01: Wi-Fi BLE ST64 E27 822-65 RGB CL\nдобавить ESP25_SHRGB_01: добавлен (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nразличные улучшения из проверки адаптера",
+        "pt": "corrigir eslint 9.x\nadicionar ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\nadicionar ESP25_SHRGB_01: adicionado (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nvárias melhorias da verificação do adaptador",
+        "nl": "repareren eslint 9.x\nESP26_SHRGB_01 toevoegen: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\nESP25_SHRGB_01 toevoegen: toegevoegd (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\ndiverse verbeteringen van adaptercontrole",
+        "fr": "fixer eslint 9.x\najouter ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\najouter ESP25_SHRGB_01: ajouté (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\ndiverses améliorations de vérification de l'adaptateur",
+        "it": "fix eslint 9.x\naggiungi ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\naggiungere ESP25_SHRGB_01: aggiunto (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nvarie miglioramenti dal controllo dell'adattatore",
+        "es": "fijar eslint 9.x\nañadir ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\nañadir ESP25_SHRGB_01: añadido (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nvarias mejoras de la comprobación del adaptador",
+        "pl": "fix eslint 9.x\ndodaj ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\ndodaj ESP25_SHRGB_01: dodany (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nróżne ulepszenia z kontroli adaptera",
+        "uk": "фіксатор eslint 9.x\ndodaj ESP26_SHRGB_01: Wi-Fi BLE ST64 E27 822-65 RGB CL\ndodaj ESP25_SHRGB_01: доданий (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nрізні покращення з перевірки адаптера",
+        "zh-cn": "修复 eslint 9.x\n添加 ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\n添加 ESP25_SHRGB_01: 添加(WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\n适配器检查中的各种改进"
       },
       "0.3.1": {
         "en": "fix scenes for ESP03_SHTWP_31, ESP24_SHRGBW_01, ESP06_SHTW1_01\nretry to release v0.3.1",

@@ -26,8 +26,6 @@ that company or product to the exclusion of others.
 ## Changelog
 ### 0.4.1 (2024-11-02)
 * fix eslint 9.x
-
-### 0.4.0 (2024-11-01)
 * add ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL
 * add ESP25_SHRGB_01: added (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)
 * various stuff from adapter check
