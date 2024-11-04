@@ -30,3 +30,16 @@ label > i[title] {
 }
 
 /* Add your styles here */
+
+/* Style for small Screens */
+@media screen and (max-width: 768px) {
+	.m .row {
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 20px;
+	}
+
+	body {
+		overflow: hidden;
+	}
+  }
