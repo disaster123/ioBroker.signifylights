@@ -24,7 +24,7 @@ Reference to a company or a product name does not imply approval or recommendati
 that company or product to the exclusion of others.
 
 ## Changelog
-### **WORK IN PROGRESS**
+### 0.4.2 (2024-11-06)
 * implement responsive design in config page (thx simatec)
 
 ### 0.4.1 (2024-11-02)

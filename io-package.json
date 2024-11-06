@@ -1,9 +1,22 @@
 {
   "common": {
     "name": "signifylights",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "tier": 3,
     "news": {
+      "0.4.2": {
+        "en": "implement responsive design in config page (thx simatec)",
+        "de": "responsive design in config page implementieren (thx simatec)",
+        "ru": "реализовать отзывчивый дизайн на странице настройки (thx simatec)",
+        "pt": "implementar design responsivo na página de configuração (thx simatec)",
+        "nl": "responsive design implementeren in config pagina (thx simatec)",
+        "fr": "implémenter la conception réactive dans la page de configuration (thx simatec)",
+        "it": "implementare il design reattivo nella pagina di configurazione (thx simatec)",
+        "es": "implementar diseño receptivo en la página de config (thx simatec)",
+        "pl": "implementuj responsywny projekt na stronie konfiguracyjnej (thx simatec)",
+        "uk": "реалізувати чуйний дизайн на сторінці налаштувань (thx simatec)",
+        "zh-cn": "在配置页面中执行响应性设计 (thx simatec)"
+      },
       "0.4.1": {
         "en": "fix eslint 9.x\nadd ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\nadd ESP25_SHRGB_01: added (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nvarious improvements from adapter check",
         "de": "fix eslint 9.x\nESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL hinzugefügt\nESP25_SHRGB_01: hinzugefügt (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nverschiedene Verbesserungen aus der Adapterprüfung",
