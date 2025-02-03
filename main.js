@@ -291,7 +291,7 @@ class Signifylights extends utils.Adapter {
     }
 
     WIZ__SET_COLORTEMP(client_ip, state) {
-        this.log.warn('colortemp '+client_ip+' '+state);
+        // this.log.warn('colortemp '+client_ip+' '+state);
         this.WIZ__UPDATE_STATES(client_ip, {'sceneid':0});
         this.WIZ__SETPILOT(client_ip,{'temp':state});
     }
