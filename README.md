@@ -24,6 +24,9 @@ Reference to a company or a product name does not imply approval or recommendati
 that company or product to the exclusion of others.
 
 ## Changelog
+### 0.4.3 (2025-02-16)
+* implement ESP25_MHORGB_01
+  
 ### 0.4.2 (2024-11-06)
 * implement responsive design in config page (thx simatec)
 
