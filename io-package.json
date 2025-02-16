@@ -1,9 +1,22 @@
 {
   "common": {
     "name": "signifylights",
-    "version": "0.4.2",
+    "version": "0.4.3",
     "tier": 3,
     "news": {
+       "0.4.3": {
+        "en": "implement ESP25_MHORGB_01",
+        "de": "ESP25_MHORGB_01 implementiert",
+        "ru": "---",
+        "pt": "---",
+        "nl": "---",
+        "fr": "---",
+        "it": "implementare supporto per implement ESP25_MHORGB_01",
+        "es": "implementar supporto para implement ESP25_MHORGB_01",
+        "pl": "---",
+        "uk": "---",
+        "zh-cn": "---"
+      },
       "0.4.2": {
         "en": "implement responsive design in config page (thx simatec)",
         "de": "responsive design in config page implementieren (thx simatec)",
