@@ -24,6 +24,11 @@ Reference to a company or a product name does not imply approval or recommendati
 that company or product to the exclusion of others.
 
 ## Changelog
+### **WORK IN PROGRESS**
+* added ESP25_MHORGB_01
+* added ESP24_SHRGB_01
+* fix hex color
+
 ### 0.4.2 (2024-11-06)
 * implement responsive design in config page (thx simatec)
 
