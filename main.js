@@ -319,6 +319,9 @@ class Signifylights extends utils.Adapter {
         this.WIZ__SETPILOT(client_ip,params);
     }
     WIZ__SET_COLOR_HEX(client_ip, hex) {
+        if (hex.startsWith('#')) {
+            hex = hex.substring(1);
+        }
         this.WIZ__SET_COLOR_RGB(client_ip,ColorConv.HEX2RGB(hex));
     }
     WIZ__SET_COLOR_HSL(client_ip, hsl) {
