@@ -1,9 +1,22 @@
 {
   "common": {
     "name": "signifylights",
-    "version": "0.4.2",
+    "version": "0.4.3",
     "tier": 3,
     "news": {
+      "0.4.3": {
+        "en": "added ESP25_MHORGB_01\nadded ESP24_SHRGB_01\nfix hex color",
+        "de": "eSP25_MHORGB_01\neSP24_SHRGB_01\nhexenfarbe",
+        "ru": "eSP25_MHORGB_01\nдобавлено: ESP24_SHRGB_01\nфиксировать цвет шести",
+        "pt": "adicionado ESP25_MHORGB_01\nadicionado ESP24_SHRGB_01\ncor do hex",
+        "nl": "eSP25_MHORGB_01 toegevoegd\neSP24_SHRGB_01 toegevoegd\nfix hex kleur",
+        "fr": "ajouter ESP25_MHORGB_01\najouté ESP24_SHRGB_01\nfixer la couleur de l'hexagone",
+        "it": "aggiunto ESP25_MHORGB_01\naggiunto ESP24_SHRGB_01\nfissare il colore esagonale",
+        "es": "añadido ESP25_MHORGB_01\nañadido ESP24_SHRGB_01\nhex color",
+        "pl": "dodano ESP25 _ MHORGB _ 01\ndodano ESP24 _ SHRGB _ 01\nfix hex color",
+        "uk": "додано ESP25_MHORGB_01\nдодано ESP24_SHRGB_01\nфіксувати колір шістки",
+        "zh-cn": "添加 ESP25_MHORGB_01\n添加 ESP24_SHRGB_01\n修复六进制颜色"
+      },
       "0.4.2": {
         "en": "implement responsive design in config page (thx simatec)",
         "de": "responsive design in config page implementieren (thx simatec)",
@@ -81,19 +94,6 @@
         "pl": "ustawa Czasowe wezwanie do funkcji synchronizacyjnych",
         "uk": "кріплення Часові дзвінки в функції async",
         "zh-cn": "f 固定 D. 时间要求履行职能"
-      },
-      "0.1.0": {
-        "en": "various fixes and changes to become an official adapter",
-        "de": "verschiedene fixierungen und änderungen zu einem offiziellen adapter werden",
-        "ru": "различные исправления и изменения, чтобы стать официальным адаптером",
-        "pt": "várias correções e alterações para se tornar um adaptador oficial",
-        "nl": "verschillende middelen en veranderingen om een officiële adapter te worden",
-        "fr": "diverses corrections et changements pour devenir un adaptateur officiel",
-        "it": "varie correzioni e modifiche per diventare un adattatore ufficiale",
-        "es": "varios arreglos y cambios para convertirse en un adaptador oficial",
-        "pl": "zmiany i zmiany stały się oficjalnym adapterem",
-        "uk": "різні виправлення і зміни, щоб стати офіційним адаптером",
-        "zh-cn": "各种缺陷和变化成为官方适应者"
       }
     },
     "title": "SignifyLights",
