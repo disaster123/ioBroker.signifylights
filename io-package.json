@@ -1,9 +1,22 @@
 {
   "common": {
     "name": "signifylights",
-    "version": "0.4.4",
+    "version": "0.4.5",
     "tier": 3,
     "news": {
+      "0.4.5": {
+        "en": "fix minimum deps",
+        "de": "minimale deps",
+        "ru": "фиксировать минимальные дефолты",
+        "pt": "corrigir deps mínimos",
+        "nl": "fix minimum deps",
+        "fr": "fixer les dépes minimales",
+        "it": "correzione minimo deps",
+        "es": "corrección mínima",
+        "pl": "nastawić minimalne poziomy",
+        "uk": "фіксувати мінімальні депси",
+        "zh-cn": "固定最小音符"
+      },
       "0.4.4": {
         "en": "fix minimum deps",
         "de": "minimale deps",
@@ -81,19 +94,6 @@
         "pl": "tłumaczenie\nlogo\nprzedział adaptacyjny zamiast czasu\nnowe DEVICES: ESP24_SHRGBC_01 + ESP25_SHWRGB_01 + ESP15_SHRGB1S_01I\nkonfiguracja: umożliwia prowadzenie bez udp mac i ip set",
         "uk": "кілька фіксаторів перекладу\nзамінити логотип\nвикористовувати інтервал адаптера замість часу\neSP24_SHRGBC_01 + ESP25_SHWRGB_01 + ESP15_SHRGB1S_01I\nconfig: дозволити запустити без udp mac і ip набір",
         "zh-cn": "几个翻译袋\n替换逻辑\n使用适应器而不是时间断\n新的DEVICES:ESP24_SHRGBC_01+ESP25_SHWRGB_01+ESP15_SHRGB1S_01I\nconfig:允许无可言和可选"
-      },
-      "0.2.0": {
-        "en": "more setTimeout fixes",
-        "de": "mehr Set Timeout-Behebungen",
-        "ru": "больше набор Исправления Timeout",
-        "pt": "mais conjunto Correções de timeout",
-        "nl": "meer. Time-out repareert",
-        "fr": "plus de réglage Timeout corrige",
-        "it": "più set Correzioni di timeout",
-        "es": "más set Timeout fixes",
-        "pl": "ustalony Timeout naprawia",
-        "uk": "докладніше Застібка часу",
-        "zh-cn": "增 编 时间安排"
       }
     },
     "title": "SignifyLights",

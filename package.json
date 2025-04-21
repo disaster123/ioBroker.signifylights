@@ -1,6 +1,6 @@
 {
   "name": "iobroker.signifylights",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "Signify Device Adapter",
   "author": {
     "name": "disaster123",
