@@ -24,6 +24,9 @@ Reference to a company or a product name does not imply approval or recommendati
 that company or product to the exclusion of others.
 
 ## Changelog
+### **WORK IN PROGRESS**
+* fix minimum deps
+
 ### 0.4.4 (2025-04-21)
 * fix minimum deps
 
