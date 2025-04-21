@@ -1,9 +1,22 @@
 {
   "common": {
     "name": "signifylights",
-    "version": "0.4.3",
+    "version": "0.4.4",
     "tier": 3,
     "news": {
+      "0.4.4": {
+        "en": "fix minimum deps",
+        "de": "minimale deps",
+        "ru": "фиксировать минимальные дефолты",
+        "pt": "corrigir deps mínimos",
+        "nl": "fix minimum deps",
+        "fr": "fixer les dépes minimales",
+        "it": "correzione minimo deps",
+        "es": "corrección mínima",
+        "pl": "nastawić minimalne poziomy",
+        "uk": "фіксувати мінімальні депси",
+        "zh-cn": "固定最小音符"
+      },
       "0.4.3": {
         "en": "added ESP25_MHORGB_01\nadded ESP24_SHRGB_01\nfix hex color",
         "de": "eSP25_MHORGB_01\neSP24_SHRGB_01\nhexenfarbe",
@@ -81,19 +94,6 @@
         "pl": "ustalony Timeout naprawia",
         "uk": "докладніше Застібка часу",
         "zh-cn": "增 编 时间安排"
-      },
-      "0.1.1": {
-        "en": "fix setTimeout calls in async functions",
-        "de": "fixed Timeout Anrufe in Async-Funktionen",
-        "ru": "fix комплект Timeout звонки в функции async",
-        "pt": "conjunto de correção Chamadas de timeout em funções async",
-        "nl": "klaar. Quality over Quantity (QoQ) Releases Vertaling:",
-        "fr": "correction Timeout appelle dans les fonctions async",
-        "it": "set di correzione Timeout chiama in funzione asincrona",
-        "es": "juego Timeout llamadas en funciones asinc",
-        "pl": "ustawa Czasowe wezwanie do funkcji synchronizacyjnych",
-        "uk": "кріплення Часові дзвінки в функції async",
-        "zh-cn": "f 固定 D. 时间要求履行职能"
       }
     },
     "title": "SignifyLights",
