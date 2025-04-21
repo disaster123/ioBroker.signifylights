@@ -24,6 +24,9 @@ Reference to a company or a product name does not imply approval or recommendati
 that company or product to the exclusion of others.
 
 ## Changelog
+### **WORK IN PROGRESS**
+* fix minimum deps
+
 ### 0.4.3 (2025-03-25)
 * added ESP25_MHORGB_01
 * added ESP24_SHRGB_01
