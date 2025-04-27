@@ -1,9 +1,22 @@
 {
   "common": {
     "name": "signifylights",
-    "version": "0.4.5",
+    "version": "1.0.0",
     "tier": 3,
     "news": {
+      "1.0.0": {
+        "en": "* signifylights is now stable\n* replaced the old device specific code with generic code\n  to automatically support new devices without the need to get added",
+        "de": "* signifylights ist jetzt stabil\n* ersetzt den alten gerätespezifischen code mit generischem code\nneue geräte automatisch zu unterstützen, ohne dass hinzugefügt werden muss",
+        "ru": "* сигналы теперь стабильны\n* заменить старый код устройства общим кодом\nавтоматически поддерживать новые устройства без необходимости добавления",
+        "pt": "* significar luzes agora está estável\n* substituiu o código específico do dispositivo antigo com código genérico\npara suportar automaticamente novos dispositivos sem a necessidade de ser adicionado",
+        "nl": "* betekenen lichten is nu stabiel\n* vervangen van de oude apparaat specifieke code door generieke code\nom automatisch nieuwe apparaten te ondersteunen zonder de noodzaak om toegevoegd te worden",
+        "fr": "* signifylights est maintenant stable\n* a remplacé l'ancien code spécifique du périphérique par un code générique\npour prendre automatiquement en charge de nouveaux appareils sans avoir besoin d'être ajouté",
+        "it": "* signifylights è ora stabile\n* sostituito il vecchio dispositivo codice specifico con il codice generico\nper supportare automaticamente nuovi dispositivi senza la necessità di ottenere aggiunto",
+        "es": "* signifylights is now stable\n* sustituyó el antiguo código específico del dispositivo con código genérico\npara apoyar automáticamente nuevos dispositivos sin necesidad de añadir",
+        "pl": "* sensifylights is now stable\n* zastąpił stary kod urządzenia kodem rodzajowym\nautomatycznie obsługuje nowe urządzenia bez konieczności dodawania",
+        "uk": "* знаки зараз стабільні\n* замінено на певний код старого пристрою з загальним кодом\nавтоматично підтримувати нові пристрої без необхідності",
+        "zh-cn": "* 信号灯现在稳定了\n* 用通用代码取代了旧设备特定代码\n自动支持不需要添加的新设备"
+      },
       "0.4.5": {
         "en": "fix minimum deps",
         "de": "minimale deps",
@@ -81,19 +94,6 @@
         "pl": "zdjęcia do ESP03_SHTWP_31\npowtórne wydanie v0.3.1",
         "uk": "javaScript licenses API Веб-сайт Go1.13.8\nдо релізу v0.3.1",
         "zh-cn": "fix ESP03_SHTWP_31, ESP24_SHRGBW_01, ESP06_SHTW1_01\n恢复原状"
-      },
-      "0.3.0": {
-        "en": "several translation fixes\nreplace logo\nuse adapter interval instead of timeout\nnew DEVICES: ESP24_SHRGBC_01 + ESP25_SHWRGB_01 + ESP15_SHRGB1S_01I\nconfig: allow to run without udp mac and ip set",
-        "de": "mehrere übersetzungsfixes\nersetzen logo\nadapterintervall anstelle von timeout verwenden\nneue DEVICEs: ESP24_SHRGBC_01 + ESP25_SHWRGB_01 + ESP15_SHRGB1S_01I\nconfig: ohne udp mac und ip set laufen lassen",
-        "ru": "несколько исправлений перевода\nзаменить логотип\nиспользовать интервал адаптера вместо timeout\nновые устройства: ESP24_SHRGBC_01 + ESP25_SHWRGB_01 + ESP15_SHRGB1S_01I\nconfig: позвольте работать без udp mac и ip set",
-        "pt": "várias correções de tradução\nsubstituir o logotipo\nusar intervalo do adaptador em vez de timeout\nnovos DEVICES: ESP24_SHRGBC_01 + ESP25_SHWRGB_01 + ESP15_SHRGB1S_01I\nconfig: permitir executar sem udp mac e ip set",
-        "nl": "vertaling:\nvervang logo\ngebruik adapter interval in plaats van time-out\nvertaling:\nmogen we vluchten zonder udp mac en ip set",
-        "fr": "plusieurs corrections de traduction\nremplacer le logo\nutiliser l'intervalle d'adaptateur au lieu de timeout\ndEVICES : ESP24_SHRGBC_01 + ESP25_SHWRGB_01 + ESP15_SHRGB1S_01I\nconfig: permettre de fonctionner sans udp mac et ip set",
-        "it": "diverse correzioni di traduzione\nsostituisci il logo\nutilizzare l'intervallo di adattatore invece di timeout\neSP24_SHRGBC_01 + ESP25_SHWRGB_01 + ESP15_SHRGB1S_01I\nconfig: consentire di eseguire senza udp mac e ip set",
-        "es": "varios arreglos de traducción\nsustitución del logo\nuso de intervalo de adaptador en lugar de tiempo\ndEVICES: ESP24_SHRGBC_01 + ESP25_SHWRGB_01 + ESP15_SHRGB1S_01I\nconfig: permitir correr sin udp mac y ip set",
-        "pl": "tłumaczenie\nlogo\nprzedział adaptacyjny zamiast czasu\nnowe DEVICES: ESP24_SHRGBC_01 + ESP25_SHWRGB_01 + ESP15_SHRGB1S_01I\nkonfiguracja: umożliwia prowadzenie bez udp mac i ip set",
-        "uk": "кілька фіксаторів перекладу\nзамінити логотип\nвикористовувати інтервал адаптера замість часу\neSP24_SHRGBC_01 + ESP25_SHWRGB_01 + ESP15_SHRGB1S_01I\nconfig: дозволити запустити без udp mac і ip набір",
-        "zh-cn": "几个翻译袋\n替换逻辑\n使用适应器而不是时间断\n新的DEVICES:ESP24_SHRGBC_01+ESP25_SHWRGB_01+ESP15_SHRGB1S_01I\nconfig:允许无可言和可选"
       }
     },
     "title": "SignifyLights",
