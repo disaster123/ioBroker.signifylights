@@ -96,7 +96,6 @@
         "zh-cn": "fix ESP03_SHTWP_31, ESP24_SHRGBW_01, ESP06_SHTW1_01\n恢复原状"
       }
     },
-    "title": "SignifyLights",
     "titleLang": {
       "en": "SignifyLights",
       "de": "SignifyLights",
