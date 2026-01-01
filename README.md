@@ -75,7 +75,7 @@ that company or product to the exclusion of others.
 ## License
 MIT License
 
-Copyright (c) 2025 disaster123 <stefan-iobroker@prie.be>
+Copyright (c) 2025-2026 disaster123 <stefan-iobroker@prie.be>
 
 originally developed by Copyright (c) 2022 nxtstep <privat@konzeptplus.net>
 
