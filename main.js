@@ -6,17 +6,17 @@
 
 const utils = require("@iobroker/adapter-core");
 // const objectHelper = require('@apollon/iobroker-tools').objectHelper; // Common adapter utils
-// const EventEmitter = require('events').EventEmitter;
+// const EventEmitter = require('node:events').EventEmitter;
 const uuid = require('uuid');
 
 const ip = require("ip");
-// const os = require("os");
-const dns = require('dns');
+// const os = require("node:os");
+const dns = require('node:dns');
 
 const AllDeviceAttributes = require('./lib/AllDeviceAttributes.js'); // Load attribute library
 const ColorConv = require('./lib/colorconv.js'); // Load attribute library
 
-const dgram = require('dgram');
+const dgram = require('node:dgram');
 
 class Signifylights extends utils.Adapter {
 
