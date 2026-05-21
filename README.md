@@ -24,6 +24,10 @@ Reference to a company or a product name does not imply approval or recommendati
 that company or product to the exclusion of others.
 
 ## Changelog
+
+### **WORK IN PROGRESS**
+- (ioBroker-Bot) Adapter requires js-controller >= 6.0.11 now.
+
 ### 1.0.0 (2025-04-27)
 * signifylights is now stable
 * replaced the old device specific code with generic code
