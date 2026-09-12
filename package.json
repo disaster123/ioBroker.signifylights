@@ -27,7 +27,7 @@
     "node": ">= 22"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^3.2.3",
+    "@iobroker/adapter-core": "^3.4.3",
     "ip": "^2.0.1",
     "uuid": "^11.1.0"
   },
