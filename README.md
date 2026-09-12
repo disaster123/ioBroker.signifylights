@@ -77,6 +77,8 @@ that company or product to the exclusion of others.
 ### 0.0.6 (2023-04-30)
 * first release under new name
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## License
 MIT License
 
