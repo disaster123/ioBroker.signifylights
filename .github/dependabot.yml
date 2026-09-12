@@ -3,10 +3,10 @@ updates:
   - package-ecosystem: npm
     directory: '/'
     schedule:
-      interval: monthly
-      time: '04:00'
+      interval: cron
+      cronjob: '42 3 18 * *'
       timezone: Europe/Berlin
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 15
     assignees:
       - disaster123
     versioning-strategy: increase
@@ -18,9 +18,9 @@ updates:
   - package-ecosystem: github-actions
     directory: '/'
     schedule:
-      interval: monthly
-      time: '04:00'
+      interval: cron
+      cronjob: '42 3 18 * *'
       timezone: Europe/Berlin
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 15
     assignees:
       - disaster123
