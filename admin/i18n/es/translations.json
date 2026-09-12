@@ -6,8 +6,6 @@
     "ipaddress": "Dirección IP",
     "listed_online": "tratar como en línea (seg)",
     "name": "Nombre",
-    "option1": "Opción 1",
-    "option2": "opcion 2",
     "polling_intervall": "intervalo de sondeo (seg)",
     "register_devices": "registrar dispositivos para actualización automática",
     "settings": "Configuración del adaptador",

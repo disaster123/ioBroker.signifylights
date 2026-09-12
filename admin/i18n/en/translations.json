@@ -6,8 +6,6 @@
     "ipaddress": "IP Address",
     "listed_online": "treat as online (sec)",
     "name": "Name",
-    "option1": "option1",
-    "option2": "option2",
     "polling_intervall": "polling intervall (sec)",
     "register_devices": "register devices for auto update",
     "settings": "Adapter settings",

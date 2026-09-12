@@ -6,8 +6,6 @@
     "ipaddress": "Endereço de IP",
     "listed_online": "tratar como online (seg)",
     "name": "Nome",
-    "option1": "Opção 1",
-    "option2": "opção 2",
     "polling_intervall": "intervalo de polling (seg)",
     "register_devices": "registrar dispositivos para atualização automática",
     "settings": "Configurações do adaptador",

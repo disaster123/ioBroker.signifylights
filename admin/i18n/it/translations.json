@@ -6,8 +6,6 @@
     "ipaddress": "Indirizzo IP",
     "listed_online": "tratta come online (sec)",
     "name": "Nome",
-    "option1": "opzione 1",
-    "option2": "opzione 2",
     "polling_intervall": "intervallo di polling (sec)",
     "register_devices": "registrare i dispositivi per l'aggiornamento automatico",
     "settings": "Impostazioni dell'adattatore",
