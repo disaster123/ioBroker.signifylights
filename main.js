@@ -1,15 +1,15 @@
-"use strict";
+'use strict';
 
 /*
  * Created with @iobroker/create-adapter v2.4.0
  */
 
-const utils = require("@iobroker/adapter-core");
+const utils = require('@iobroker/adapter-core');
 // const objectHelper = require('@apollon/iobroker-tools').objectHelper; // Common adapter utils
 // const EventEmitter = require('events').EventEmitter;
 const uuid = require('uuid');
 
-const ip = require("ip");
+const ip = require('ip');
 // const os = require("os");
 const dns = require('dns');
 
@@ -19,7 +19,6 @@ const ColorConv = require('./lib/colorconv.js'); // Load attribute library
 const dgram = require('dgram');
 
 class Signifylights extends utils.Adapter {
-
     /**
      * @param {Partial<utils.AdapterOptions>} [options={}]
      */
@@ -27,10 +26,10 @@ class Signifylights extends utils.Adapter {
     constructor(options) {
         super({
             ...options,
-            name: "signifylights",
+            name: 'signifylights',
         });
 
-        this.HOST = ip.address();//'0.0.0.0';
+        this.HOST = ip.address(); //'0.0.0.0';
         this.PORTS = [38899, 38900];
         // nobody knows if eth0 exists - skip this here and rely on user provided MAC
         // this.MAC = os.networkInterfaces()['eth0'][0]['mac'].replace(/:/g, '').toUpperCase(); //JSON.stringify(os.networkInterfaces());//
@@ -47,16 +46,15 @@ class Signifylights extends utils.Adapter {
         this.POLLER = null;
         this.timeoutList = {};
 
-        this.on("ready", this.onReady.bind(this));
-        this.on("stateChange", this.onStateChange.bind(this));
+        this.on('ready', this.onReady.bind(this));
+        this.on('stateChange', this.onStateChange.bind(this));
         // this.on("objectChange", this.onObjectChange.bind(this));
         // this.on("message", this.onMessage.bind(this));
-        this.on("unload", this.onUnload.bind(this));
+        this.on('unload', this.onUnload.bind(this));
     }
 
     async getIP(hostname) {
-        const obj = await dns.promises.lookup(hostname).catch((error)=>
-        {
+        const obj = await dns.promises.lookup(hostname).catch(error => {
             console.error(error);
         });
         return obj?.address;
@@ -68,7 +66,7 @@ class Signifylights extends utils.Adapter {
             this.SOCKETS[this.PORTS[i]] = dgram.createSocket('udp4');
             this.SOCKETS[this.PORTS[i]].bind(this.PORTS[i], this.HOST);
 
-            this.SOCKETS[this.PORTS[i]].on('error', (err) => {
+            this.SOCKETS[this.PORTS[i]].on('error', err => {
                 this.log.debug(`server error:\n${err.stack}`);
                 this.ISONLINE[this.PORTS[i]] = false;
                 this.SOCKETS[this.PORTS[i]].close();
@@ -91,7 +89,6 @@ class Signifylights extends utils.Adapter {
     }
 
     WIZ__RECEIVE_MESSAGE(msg, client) {
-        const that = this;
         // QUEUE löschen
         try {
             msg = JSON.parse(msg);
@@ -108,8 +105,7 @@ class Signifylights extends utils.Adapter {
                 for (const queueID in this.MESSAGEQUEUE[objid]) {
                     const data = this.MESSAGEQUEUE[objid][queueID];
                     if (msg.method == data.message.method && client.port == data.port) {
-
-                        if (msg.method == 'getPilot' && ( msg.id == data.message.id || data.message.id == 0 ) ) {
+                        if (msg.method == 'getPilot' && (msg.id == data.message.id || data.message.id == 0)) {
                             delete this.MESSAGEQUEUE[objid][queueID];
                             //this.log.debug(`[getPilot] ${client.address}:${client.port} success`);
 
@@ -117,25 +113,29 @@ class Signifylights extends utils.Adapter {
                             //Object.assign(AllDeviceAttributes.led_empty, msg.result);
 
                             this.WIZ__UPDATE_STATES(objid, msg.result);
-
-                        } else if (msg.method == 'setPilot' &&  msg.id == data.message.id && msg.result.success == true ) {
+                        } else if (
+                            msg.method == 'setPilot' &&
+                            msg.id == data.message.id &&
+                            msg.result.success == true
+                        ) {
                             delete this.MESSAGEQUEUE[objid][queueID];
                             //this.log.debug(`[setPilot] ${client.address}:${client.port} success`);
-
-                        } else if (msg.method == 'getSystemConfig' && msg.id == data.message.id && 'result' in msg ) {
+                        } else if (msg.method == 'getSystemConfig' && msg.id == data.message.id && 'result' in msg) {
                             delete this.MESSAGEQUEUE[objid][queueID];
                             //this.log.debug(`[getSystemConfig] ${client.address}:${client.port} success`);
                             this.WIZ__UPDATE_STATES(objid, msg.result);
-
-                        } else if (msg.method == 'registration' && msg.id == data.message.id && 'result' in msg && msg.result.success == true ) {
+                        } else if (
+                            msg.method == 'registration' &&
+                            msg.id == data.message.id &&
+                            'result' in msg &&
+                            msg.result.success == true
+                        ) {
                             delete this.MESSAGEQUEUE[objid][queueID];
                             //this.log.debug(`[registration] ${client.address}:${client.port} success`);
-                            this.WIZ__UPDATE_STATES(objid, {'ip':client.address});
-
+                            this.WIZ__UPDATE_STATES(objid, { ip: client.address });
                         }
                     }
                 }
-
             } else {
                 this.log.debug(`No QUEUE for Client ${client.address}:${client.port} found`);
             }
@@ -148,17 +148,18 @@ class Signifylights extends utils.Adapter {
                 const message = new Buffer(`{"method":"syncPilot","result":{"mac":"${this.MAC}"}}`);
 
                 //setTimeout(function() {
-                that.SOCKETS[client.port].send(message, 0, message.length, client.port, client.address, (err) => {
-                    if (err) throw err;
+                this.SOCKETS[client.port].send(message, 0, message.length, client.port, client.address, err => {
+                    if (err) {
+                        throw err;
+                    }
                 });
                 //that.log.debug(`[syncPilot] ${client.address}:${client.port} answerd`);
                 //}, 5000);
-
             }
         }
     }
 
-    async WIZ__UPDATE_STATES(ip, result){
+    async WIZ__UPDATE_STATES(ip, result) {
         try {
             const deviceId = ip.replace(/\./g, '_');
             const convert = AllDeviceAttributes.conv_wiz_iob;
@@ -170,7 +171,7 @@ class Signifylights extends utils.Adapter {
 
             for (const key in result) {
                 if (key in convert) {
-                    if (['hsv','hsl','rgb','drvConf'].includes(key)) {
+                    if (['hsv', 'hsl', 'rgb', 'drvConf'].includes(key)) {
                         result[key] = JSON.stringify(result[key]);
                     }
                     if (key == 'temp' && result[key] == 0) {
@@ -178,15 +179,17 @@ class Signifylights extends utils.Adapter {
                         // skip it
                         continue;
                     }
-                    if (key =='online') {
-                        this.setState(deviceId+'.'+convert[key], {val: result[key], ack: true, expire: +this.config.listed_online});
+                    if (key == 'online') {
+                        this.setState(`${deviceId}.${convert[key]}`, {
+                            val: result[key],
+                            ack: true,
+                            expire: +this.config.listed_online,
+                        });
                     } else {
-                        this.setState(deviceId+'.'+convert[key], {val: result[key], ack: true});
+                        this.setState(`${deviceId}.${convert[key]}`, { val: result[key], ack: true });
                     }
-
                 }
             }
-
         } catch (err) {
             //this.log.debug(`__ERROR ->  ${FUNCTION_NAME} [ ${ip} : ${name} ]`);
             this.log.error(err);
@@ -196,26 +199,25 @@ class Signifylights extends utils.Adapter {
     WIZ__QUEUE_MESSAGE(method, id, params, ip, port) {
         const queueID = uuid.v4();
         const data = {
-            "ip": ip,
-            "port": port,
-            "attempt" : 0,
-            "message": {
-                "method": method,
-                "id": id,
-                "params": params
+            ip: ip,
+            port: port,
+            attempt: 0,
+            message: {
+                method: method,
+                id: id,
+                params: params,
             },
-            "message_buffer": ""
+            message_buffer: '',
         };
         data['message_buffer'] = new Buffer(JSON.stringify(data.message));
 
         try {
             this.MESSAGEQUEUE[ip][queueID] = data;
             this.WIZ__SEND_MESSAGE(ip, queueID, this);
-        } catch(e) {
-            this.log.warn("MSG QUEUE: IP: " + ip + "Error: " + e);
+        } catch (e) {
+            this.log.warn(`MSG QUEUE: IP: ${ip}Error: ${e}`);
         }
     }
-
 
     async WIZ__SEND_MESSAGE(ip, queueID, that) {
         const realip = await that.getIP(ip);
@@ -224,35 +226,50 @@ class Signifylights extends utils.Adapter {
             // by deleting the queue we skip steps below
             delete that.MESSAGEQUEUE[ip][queueID];
         }
-        if (ip in that.MESSAGEQUEUE && queueID in that.MESSAGEQUEUE[ip] && that.MESSAGEQUEUE[ip][queueID]['attempt'] < that.maxAttempt) {
-
+        if (
+            ip in that.MESSAGEQUEUE &&
+            queueID in that.MESSAGEQUEUE[ip] &&
+            that.MESSAGEQUEUE[ip][queueID]['attempt'] < that.maxAttempt
+        ) {
             that.ipmap[realip] = ip;
             that.ipmap[ip] = realip;
 
             that.MESSAGEQUEUE[ip][queueID]['attempt'] = ++that.MESSAGEQUEUE[ip][queueID]['attempt'];
 
-            that.log.debug(`Nachricht ${queueID} gesendet -> ${ip} ${realip} Versuch: ${that.MESSAGEQUEUE[ip][queueID]['attempt']}`);
+            that.log.debug(
+                `Nachricht ${queueID} gesendet -> ${ip} ${realip} Versuch: ${that.MESSAGEQUEUE[ip][queueID]['attempt']}`,
+            );
             //that.log.warn(JSON.stringify(that.MESSAGEQUEUE[ip][queueID]['message']))
 
-            that.SOCKETS[that.MESSAGEQUEUE[ip][queueID]['port']].send(that.MESSAGEQUEUE[ip][queueID]['message_buffer'], 0, that.MESSAGEQUEUE[ip][queueID]['message_buffer'].length, that.MESSAGEQUEUE[ip][queueID]['port'], realip, (err) => {
-                if (err) {
-                    that.log.warn(`Nachricht ${queueID} konnte nicht gesendet werden: ${err}`);
-                }
-            });
+            that.SOCKETS[that.MESSAGEQUEUE[ip][queueID]['port']].send(
+                that.MESSAGEQUEUE[ip][queueID]['message_buffer'],
+                0,
+                that.MESSAGEQUEUE[ip][queueID]['message_buffer'].length,
+                that.MESSAGEQUEUE[ip][queueID]['port'],
+                realip,
+                err => {
+                    if (err) {
+                        that.log.warn(`Nachricht ${queueID} konnte nicht gesendet werden: ${err}`);
+                    }
+                },
+            );
 
-            const timeoutid = that.setTimeout(function() {
+            const timeoutid = that.setTimeout(function () {
                 that.WIZ__SEND_MESSAGE(ip, queueID, that);
                 delete that.timeoutList[timeoutid];
             }, that.sendTimeout);
             if (!timeoutid) {
-                that.log.error("ERROR ERROR NO timeoutid returned");
+                that.log.error('ERROR ERROR NO timeoutid returned');
             }
             that.timeoutList[timeoutid] = true;
-
-        } else if (ip in that.MESSAGEQUEUE && queueID in that.MESSAGEQUEUE[ip] && that.MESSAGEQUEUE[ip][queueID]['attempt'] >= that.maxAttempt) {
+        } else if (
+            ip in that.MESSAGEQUEUE &&
+            queueID in that.MESSAGEQUEUE[ip] &&
+            that.MESSAGEQUEUE[ip][queueID]['attempt'] >= that.maxAttempt
+        ) {
             that.log.warn(`Nachricht ${queueID} ${ip} ${realip} hat keine Antwort erhalten`);
             delete that.MESSAGEQUEUE[ip][queueID];
-            that.WIZ__UPDATE_STATES(ip, {'online': false});
+            that.WIZ__UPDATE_STATES(ip, { online: false });
         }
     }
 
@@ -266,46 +283,51 @@ class Signifylights extends utils.Adapter {
     }
 
     WIZ__REGISTER(client_ip) {
-        const that = this;
-        this.WIZ__QUEUE_MESSAGE('registration',that.WIZ__GET_MESSAGEID(),{"phoneMac":this.MAC,"phoneIp":this.IP,"register":true},client_ip, 38899);
+        this.WIZ__QUEUE_MESSAGE(
+            'registration',
+            this.WIZ__GET_MESSAGEID(),
+            { phoneMac: this.MAC, phoneIp: this.IP, register: true },
+            client_ip,
+            38899,
+        );
     }
 
     WIZ__GETPILOT(client_ip) {
-        this.WIZ__QUEUE_MESSAGE('getPilot',0,{},client_ip, 38899);
+        this.WIZ__QUEUE_MESSAGE('getPilot', 0, {}, client_ip, 38899);
     }
 
     WIZ__SETPILOT(client_ip, params) {
-        this.WIZ__QUEUE_MESSAGE('setPilot',this.WIZ__GET_MESSAGEID(),params,client_ip, 38899);
+        this.WIZ__QUEUE_MESSAGE('setPilot', this.WIZ__GET_MESSAGEID(), params, client_ip, 38899);
     }
 
     WIZ__GETSYSTEMCONFIG(client_ip) {
-        this.WIZ__QUEUE_MESSAGE('getSystemConfig',this.WIZ__GET_MESSAGEID(),{},client_ip, 38899);
+        this.WIZ__QUEUE_MESSAGE('getSystemConfig', this.WIZ__GET_MESSAGEID(), {}, client_ip, 38899);
     }
 
     WIZ__SET_STATE(client_ip, state) {
-        this.WIZ__SETPILOT(client_ip,{'state':state});
+        this.WIZ__SETPILOT(client_ip, { state: state });
     }
 
     WIZ__SET_DIMMING(client_ip, state) {
-        this.WIZ__SETPILOT(client_ip,{'dimming':state});
+        this.WIZ__SETPILOT(client_ip, { dimming: state });
     }
 
     WIZ__SET_COLORTEMP(client_ip, state) {
         // this.log.warn('colortemp '+client_ip+' '+state);
-        this.WIZ__UPDATE_STATES(client_ip, {'sceneid':0});
-        this.WIZ__SETPILOT(client_ip,{'temp':state});
+        this.WIZ__UPDATE_STATES(client_ip, { sceneid: 0 });
+        this.WIZ__SETPILOT(client_ip, { temp: state });
     }
 
     async WIZ__SET_COLOR(client_ip) {
         const params = {};
-        params.r = await this.WIZ__GET_IOB_STATE(client_ip,'led.r');
-        params.g = await this.WIZ__GET_IOB_STATE(client_ip,'led.g');
-        params.b = await this.WIZ__GET_IOB_STATE(client_ip,'led.b');
-        params.w = await this.WIZ__GET_IOB_STATE(client_ip,'led.w');
-        params.c = await this.WIZ__GET_IOB_STATE(client_ip,'led.c');
+        params.r = await this.WIZ__GET_IOB_STATE(client_ip, 'led.r');
+        params.g = await this.WIZ__GET_IOB_STATE(client_ip, 'led.g');
+        params.b = await this.WIZ__GET_IOB_STATE(client_ip, 'led.b');
+        params.w = await this.WIZ__GET_IOB_STATE(client_ip, 'led.w');
+        params.c = await this.WIZ__GET_IOB_STATE(client_ip, 'led.c');
 
         for (const key in params) {
-            if (params[key] == null ) {
+            if (params[key] == null) {
                 delete params[key];
             } else {
                 params[key] = params[key]['val'];
@@ -315,57 +337,68 @@ class Signifylights extends utils.Adapter {
         const rgb = [params.r, params.g, params.b];
         this.WIZ__SET_COLOR_RGB(client_ip, rgb);
 
-        this.WIZ__UPDATE_STATES(client_ip, {'sceneid':0});
-        this.WIZ__SETPILOT(client_ip,params);
+        this.WIZ__UPDATE_STATES(client_ip, { sceneid: 0 });
+        this.WIZ__SETPILOT(client_ip, params);
     }
     WIZ__SET_COLOR_HEX(client_ip, hex) {
         if (hex.startsWith('#')) {
             hex = hex.substring(1);
         }
-        this.WIZ__SET_COLOR_RGB(client_ip,ColorConv.HEX2RGB(hex));
+        this.WIZ__SET_COLOR_RGB(client_ip, ColorConv.HEX2RGB(hex));
     }
     WIZ__SET_COLOR_HSL(client_ip, hsl) {
         if (!Array.isArray(hsl)) {
             hsl = JSON.parse(hsl);
         }
-        this.WIZ__SET_COLOR_RGB(client_ip,ColorConv.HSL2RGB(hsl[0],hsl[1],hsl[2]));
+        this.WIZ__SET_COLOR_RGB(client_ip, ColorConv.HSL2RGB(hsl[0], hsl[1], hsl[2]));
     }
     WIZ__SET_COLOR_HSV(client_ip, hsv) {
         if (!Array.isArray(hsv)) {
             hsv = JSON.parse(hsv);
         }
-        this.WIZ__SET_COLOR_RGB(client_ip,ColorConv.HSV2RGB(hsv[0],hsv[1],hsv[2]));
+        this.WIZ__SET_COLOR_RGB(client_ip, ColorConv.HSV2RGB(hsv[0], hsv[1], hsv[2]));
     }
     WIZ__SET_COLOR_HUE(client_ip, hue) {
-        this.WIZ__SET_COLOR_RGB(client_ip,ColorConv.HUE2RGB(hue));
+        this.WIZ__SET_COLOR_RGB(client_ip, ColorConv.HUE2RGB(hue));
     }
 
     WIZ__SET_COLOR_RGB(client_ip, rgb) {
         if (!Array.isArray(rgb)) {
             rgb = JSON.parse(rgb);
         }
-        const params = {'r':rgb[0],'g':rgb[1],'b':rgb[2]};
+        const params = { r: rgb[0], g: rgb[1], b: rgb[2] };
         const hsv = ColorConv.RGB2HSV(params.r, params.g, params.b);
         const hsl = ColorConv.RGB2HSL(params.r, params.g, params.b);
         const hex = ColorConv.RGB2HEX(params.r, params.g, params.b);
         const hue = ColorConv.RGB2HUE(params.r, params.g, params.b);
 
-        this.WIZ__UPDATE_STATES(client_ip, {'sceneid':0,'rgb':rgb,'hsv':hsv,'hsl':hsl,'hex':hex,'hue':hue,'r':rgb[0],'g':rgb[1],'b':rgb[2],'c':0,'w':0});
-        this.WIZ__SETPILOT(client_ip,params);
+        this.WIZ__UPDATE_STATES(client_ip, {
+            sceneid: 0,
+            rgb: rgb,
+            hsv: hsv,
+            hsl: hsl,
+            hex: hex,
+            hue: hue,
+            r: rgb[0],
+            g: rgb[1],
+            b: rgb[2],
+            c: 0,
+            w: 0,
+        });
+        this.WIZ__SETPILOT(client_ip, params);
     }
 
     WIZ__SET_SPEED(client_ip, state) {
-        this.WIZ__SETPILOT(client_ip,{'speed':state});
+        this.WIZ__SETPILOT(client_ip, { speed: state });
     }
 
     WIZ__SET_SCENE(client_ip, state) {
-        this.WIZ__SETPILOT(client_ip,{'sceneid':state});
+        this.WIZ__SETPILOT(client_ip, { sceneid: state });
     }
-
 
     async WIZ__GET_IOB_STATE(ip, key) {
         const client_ip = ip.replace(/\./g, '_');
-        return await this.getStateAsync(client_ip+'.'+key);
+        return await this.getStateAsync(`${client_ip}.${key}`);
     }
 
     /**
@@ -375,24 +408,30 @@ class Signifylights extends utils.Adapter {
         // const that = this;
         // Initialize your adapter here
         // Reset the connection indicator during startup
-        this.setState("info.connection", false, true);
+        this.setState('info.connection', false, true);
 
         if (!(this.config.bind_ip && this.config.bind_ip.length > 0)) {
-            this.log.error("adapter is unconfigured, bind ip missing");
+            this.log.error('adapter is unconfigured, bind ip missing');
         } else {
             this.HOST = this.config.bind_ip;
-            this.log.info("config bind ip address: " + this.config.bind_ip);
-            if (this.config.register_devices === true &&
-                !(this.config.udpip && this.config.udpip.length > 0 &&
-                this.config.udpmac && this.config.udpmac.length > 0)) {
-                this.log.error("adapter is unconfigured, udp target ip and/or udp mac address for auto update missing");
+            this.log.info(`config bind ip address: ${this.config.bind_ip}`);
+            if (
+                this.config.register_devices === true &&
+                !(
+                    this.config.udpip &&
+                    this.config.udpip.length > 0 &&
+                    this.config.udpmac &&
+                    this.config.udpmac.length > 0
+                )
+            ) {
+                this.log.error('adapter is unconfigured, udp target ip and/or udp mac address for auto update missing');
             } else {
-                if (this.config.register_devices === true){
-                    this.log.info("config register devices for auto update: enabled");
+                if (this.config.register_devices === true) {
+                    this.log.info('config register devices for auto update: enabled');
                     this.IP = this.config.udpip;
-                    this.log.info("config udp target IP for auto update: " + this.config.udpip);
+                    this.log.info(`config udp target IP for auto update: ${this.config.udpip}`);
                     this.MAC = this.config.udpmac.replace(/:/g, '').toUpperCase();
-                    this.log.info("config udp mac address for auto update: " + this.MAC);
+                    this.log.info(`config udp mac address for auto update: ${this.MAC}`);
                 }
                 await this.open_udp_sockets();
 
@@ -405,7 +444,8 @@ class Signifylights extends utils.Adapter {
 
     /**
      * Is called when adapter shuts down - callback has to be called under any circumstances!
-     * @param {() => void} callback
+     *
+     * @param {() => void} callback Callback supplied by ioBroker
      */
     onUnload(callback) {
         try {
@@ -429,17 +469,22 @@ class Signifylights extends utils.Adapter {
 
     /**
      * Is called if a subscribed state changes
-     * @param {string} id
-     * @param {ioBroker.State | null | undefined} state
+     *
+     * @param {string} id ID of the changed state
+     * @param {ioBroker.State | null | undefined} state New state value
      */
     onStateChange(id, state) {
         if (state) {
             // The state was changed
             if (state.ack == false) {
                 const state_name = id.split('.').slice(-2).join('.');
-                // eslint-disable-next-line no-unused-vars
-                const client_ip = id.split('.').slice(2,3).join().replace(/_/g, '.');
-                // eslint-disable-next-line no-unused-vars
+
+                // The evaluated handler references this variable by name.
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                const client_ip = id.split('.').slice(2, 3).join().replace(/_/g, '.');
+
+                // The evaluated handler references this variable by name.
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 const state_value = state.val;
                 eval(AllDeviceAttributes.get_on_function(state_name));
                 //this.log.info(`state ${state_name} changed: ${state.val} (ack = ${state.ack}) ${JSON.stringify(state)}`);
@@ -472,7 +517,7 @@ class Signifylights extends utils.Adapter {
                 for (const statename in deviceStates) {
                     const state = deviceStates[statename];
                     if ('on' in state) {
-                        this.subscribeStates('*.'+statename);
+                        this.subscribeStates(`*.${statename}`);
                     }
                 }
             }
@@ -485,7 +530,6 @@ class Signifylights extends utils.Adapter {
 
     async WIZ__INIT_DEVICE(ip, name) {
         const FUNCTION_NAME = 'WIZ__INIT_DEVICES';
-        const that = this;
         this.log.debug(`__START ->  ${FUNCTION_NAME} [ ${ip} : ${name} ]`);
 
         try {
@@ -494,9 +538,9 @@ class Signifylights extends utils.Adapter {
             this.log.debug(`-> CREATE Device: ${deviceId}`);
 
             let deviceStates = AllDeviceAttributes.MINIMAL();
-            let deviceType = "MINIMAL";
+            let deviceType = 'MINIMAL';
 
-            const obj = await this.getStateAsync(deviceId+'.system.moduleName');
+            const obj = await this.getStateAsync(`${deviceId}.system.moduleName`);
 
             if (obj && obj.val.length > 5) {
                 deviceType = obj.val;
@@ -504,35 +548,34 @@ class Signifylights extends utils.Adapter {
             }
             this.log.debug(`-> CREATE DeviceType: ${deviceType}`);
 
-            if (deviceType == "MINIMAL") {
+            if (deviceType == 'MINIMAL') {
                 // reschedule until we know device type...
-                const timeoutid = that.setTimeout(function() {
-                    that.WIZ__INIT_DEVICE(ip, name);
-                    delete that.timeoutList[timeoutid];
+                const timeoutid = this.setTimeout(() => {
+                    this.WIZ__INIT_DEVICE(ip, name);
+                    delete this.timeoutList[timeoutid];
                 }, 5000);
                 if (!timeoutid) {
-                    that.log.error("ERROR ERROR NO ${timeoutid} returned");
+                    this.log.error('ERROR ERROR NO ${timeoutid} returned');
                 }
-                that.timeoutList[timeoutid] = true;
+                this.timeoutList[timeoutid] = true;
             }
 
-            if (eval('typeof AllDeviceAttributes.'+deviceType+'() !== "undefined"')) {
+            if (eval(`typeof AllDeviceAttributes.${deviceType}() !== "undefined"`)) {
                 this.log.debug(`-> CREATE DeviceType: EVAL ${deviceType}`);
-                deviceStates = eval('AllDeviceAttributes.'+deviceType+'()');
+                deviceStates = eval(`AllDeviceAttributes.${deviceType}()`);
             }
 
             if (deviceStates) {
-
-                await this.extendObjectAsync( deviceId, {
+                await this.extendObjectAsync(deviceId, {
                     type: 'device',
                     common: {
-                        name: `Device: ${name} - ${ip}`
+                        name: `Device: ${name} - ${ip}`,
                     },
                     native: {
                         ip: ip,
                         name: name,
-                        mac: '' // ToDo:
-                    }
+                        mac: '', // ToDo:
+                    },
                 });
 
                 for (const statename in deviceStates) {
@@ -541,35 +584,32 @@ class Signifylights extends utils.Adapter {
                     const channelId = statename.split('.').slice(0, 1).join();
 
                     if (channelId !== statename) {
-
                         //this.log.debug(`-> CREATE CHANNEL: ${deviceId}.${channelId}`);
-                        await this.extendObjectAsync( deviceId + '.' + channelId, {
+                        await this.extendObjectAsync(`${deviceId}.${channelId}`, {
                             type: 'channel',
                             common: {
-                                name: `Channel: ${channelId}`
+                                name: `Channel: ${channelId}`,
                             },
-                            native: {}
+                            native: {},
                         });
                     }
 
                     //this.log.debug(`-> CREATE STATE: ${deviceId}.${statename}`);
-                    await this.extendObjectAsync( deviceId + '.' + statename, {
+                    await this.extendObjectAsync(`${deviceId}.${statename}`, {
                         type: 'state',
-                        common: state.common
+                        common: state.common,
                     });
-
-
                 }
             }
 
-            const reg = await this.WIZ__GET_IOB_STATE(ip,'system.register');
-            if (this.config.register_devices == true && reg !== null && reg.val == true ) {
+            const reg = await this.WIZ__GET_IOB_STATE(ip, 'system.register');
+            if (this.config.register_devices == true && reg !== null && reg.val == true) {
                 this.WIZ__REGISTER(ip);
             }
             this.WIZ__GETSYSTEMCONFIG(ip);
             this.WIZ__GETPILOT(ip);
             if (this.config.polling_intervall > 0) {
-                this.POLLER = this.setInterval(this.WIZ__GETPILOT.bind(this), this.config.polling_intervall*1000, ip);
+                this.POLLER = this.setInterval(this.WIZ__GETPILOT.bind(this), this.config.polling_intervall * 1000, ip);
             }
 
             //this.log.debug(`__END ->  ${FUNCTION_NAME} [ ${ip} : ${name} ]`);
@@ -578,15 +618,14 @@ class Signifylights extends utils.Adapter {
             this.log.error(err);
         }
     }
-
 }
 
 if (require.main !== module) {
     // Export the constructor in compact mode
     /**
-     * @param {Partial<utils.AdapterOptions>} [options={}]
+     * @param {Partial<utils.AdapterOptions>} [options] Adapter options
      */
-    module.exports = (options) => new Signifylights(options);
+    module.exports = options => new Signifylights(options);
 } else {
     // otherwise start the instance directly
     new Signifylights();
