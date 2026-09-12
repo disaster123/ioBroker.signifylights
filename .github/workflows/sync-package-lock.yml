@@ -1,0 +1,44 @@
+name: Sync package-lock
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - package.json
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-package-lock
+  cancel-in-progress: false
+
+jobs:
+  sync-package-lock:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Sync package-lock.json
+        run: npm install --package-lock-only --ignore-scripts --lockfile-version=2
+
+      - name: Commit package-lock.json
+        run: |
+          if git diff --quiet -- package-lock.json; then
+            echo "package-lock.json is already up to date"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package-lock.json
+          git commit -m "chore: sync package-lock.json [skip ci]"
+          git push
