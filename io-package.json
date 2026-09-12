@@ -1,9 +1,22 @@
 {
   "common": {
     "name": "signifylights",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "tier": 3,
     "news": {
+      "1.0.1": {
+        "en": "Adapter requires node.js >= 22 now.\nAdapter requires js-controller >= 6.0.11 now.",
+        "de": "Adapter benötigt jetzt node.js >= 22.\nAdapter benötigt jetzt JS-Controller >= 6.0.11.",
+        "ru": "Теперь для адаптера требуется файл node.js >= 22.\nТеперь для адаптера требуется js-контроллер >= 6.0.11.",
+        "pt": "O adaptador agora requer node.js >= 22.\nO adaptador agora requer js-controller >= 6.0.11.",
+        "nl": "Voor de adapter is nu node.js >= 22 nodig.\nVoor de adapter is nu een js-controller >= 6.0.11 nodig.",
+        "fr": "Adapter nécessite node.js >= 22.\nAdapter nécessite JS-Controller >= 6.0.11.",
+        "it": "L'adattatore ora richiede node.js >= 22.\nL'adattatore ora richiede js-controller >= 6.0.11.",
+        "es": "El adaptador necesita node.js >= 22 ahora.\nEl adaptador ahora requiere js-controller >= 6.0.11.",
+        "pl": "Adapter wymaga teraz node.js >= 22.\nAdapter wymaga teraz js-controller >= 6.0.11.",
+        "uk": "Тепер адаптер вимагає node.js >= 22.\nДля адаптера зараз потрібен js-контролер >= 6.0.11.",
+        "zh-cn": "适配器现在需要 node.js >= 22。\n适配器现在需要 js-controller >= 6.0.11。"
+      },
       "1.0.0": {
         "en": "* signifylights is now stable\n* replaced the old device specific code with generic code\n  to automatically support new devices without the need to get added",
         "de": "* signifylights ist jetzt stabil\n* ersetzt den alten gerätespezifischen code mit generischem code\nneue geräte automatisch zu unterstützen, ohne dass hinzugefügt werden muss",
@@ -81,19 +94,6 @@
         "pl": "fix eslint 9.x\ndodaj ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\ndodaj ESP25_SHRGB_01: dodany (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nróżne ulepszenia z kontroli adaptera",
         "uk": "фіксатор eslint 9.x\ndodaj ESP26_SHRGB_01: Wi-Fi BLE ST64 E27 822-65 RGB CL\ndodaj ESP25_SHRGB_01: доданий (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nрізні покращення з перевірки адаптера",
         "zh-cn": "修复 eslint 9.x\n添加 ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\n添加 ESP25_SHRGB_01: 添加(WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\n适配器检查中的各种改进"
-      },
-      "0.3.1": {
-        "en": "fix scenes for ESP03_SHTWP_31, ESP24_SHRGBW_01, ESP06_SHTW1_01\nretry to release v0.3.1",
-        "de": "fix-Szenen für ESP03_SHTWP_31, ESP24_SHRGBW_01, ESP06_SHTW1_01\nretry to release v0.3.1",
-        "ru": "исправить сцены для ESP03_SHTWP_31, ESP24_SHRGBW_01, ESP06_SHTW1_01\nretry для релиза v0.3.1",
-        "pt": "corrigir cenas para ESP03_SHTWP_31, ESP24_SHRGBW_01, ESP06_SHTW1_01\ntentar liberar v0.3.1",
-        "nl": "vertaling:\n_",
-        "fr": "fixer des scènes pour ESP03_SHTWP_31, ESP24_SHRGBW_01, ESP06_SHTW1_01\nretry to release v0.3.1",
-        "it": "scene di correzione per ESP03_SHTWP_31, ESP24_SHRGBW_01, ESP06_SHTW1_01\nretry to release v0.3.1",
-        "es": "escenas de fijación para ESP03_SHTWP_31, ESP24_SHRGBW_01, ESP06_SHTW1_01\nretry to release v0.3.1",
-        "pl": "zdjęcia do ESP03_SHTWP_31\npowtórne wydanie v0.3.1",
-        "uk": "javaScript licenses API Веб-сайт Go1.13.8\nдо релізу v0.3.1",
-        "zh-cn": "fix ESP03_SHTWP_31, ESP24_SHRGBW_01, ESP06_SHTW1_01\n恢复原状"
       }
     },
     "titleLang": {
