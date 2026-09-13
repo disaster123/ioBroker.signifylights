@@ -33,6 +33,7 @@ jobs:
           # install-command: 'npm install'
           lint: true
           type-checking: true
+          test-command: npm test
 
   # Runs adapter tests on all supported node versions and OSes
   adapter-tests:
