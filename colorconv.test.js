@@ -3,6 +3,18 @@
 const assert = require('node:assert/strict');
 const ColorConv = require('./lib/colorconv.js');
 
+describe('Hexadecimal to RGB conversion', () => {
+    it('converts six-digit hexadecimal colors', () => {
+        assert.deepEqual(ColorConv.HEX2RGB('ff8040'), [255, 128, 64]);
+        assert.deepEqual(ColorConv.HEX2RGB('000000'), [0, 0, 0]);
+        assert.deepEqual(ColorConv.HEX2RGB('FFFFFF'), [255, 255, 255]);
+    });
+
+    it('rejects empty input with a TypeError', () => {
+        assert.throws(() => ColorConv.HEX2RGB(''), TypeError);
+    });
+});
+
 describe('HSV to RGB conversion', () => {
     it('covers all six hue sectors and the hue wraparound', () => {
         const expected = [[255, 0, 0], [255, 255, 0], [0, 255, 0], [0, 255, 255], [0, 0, 255], [255, 0, 255]];
