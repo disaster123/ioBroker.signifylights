@@ -357,8 +357,34 @@ class Signifylights extends utils.Adapter {
         }
         this.WIZ__SET_COLOR_RGB(client_ip, ColorConv.HSV2RGB(hsv[0], hsv[1], hsv[2]));
     }
-    WIZ__SET_COLOR_HUE(client_ip, hue) {
-        this.WIZ__SET_COLOR_RGB(client_ip, ColorConv.HUE2RGB(hue));
+    async WIZ__SET_COLOR_HUE(client_ip, hue) {
+        try {
+            if (typeof hue !== 'number' || !Number.isFinite(hue) || hue < 0 || hue > 360) {
+                this.log.warn(`Cannot set hue for ${client_ip}: expected a number between 0 and 360`);
+                return;
+            }
+
+            const states = await Promise.all(
+                ['led.r', 'led.g', 'led.b'].map(key => this.WIZ__GET_IOB_STATE(client_ip, key)),
+            );
+            const rgb = [];
+            for (const state of states) {
+                const value = state?.val;
+                if (typeof value !== 'number' || !Number.isFinite(value) || value < 0 || value > 255) {
+                    this.log.warn(`Cannot set hue for ${client_ip}: current RGB color is missing or invalid`);
+                    return;
+                }
+                rgb.push(value);
+            }
+
+            const max = Math.max(...rgb);
+            const min = Math.min(...rgb);
+            const saturation = max === 0 ? 0 : ((max - min) / max) * 100;
+            const value = (max / 255) * 100;
+            this.WIZ__SET_COLOR_RGB(client_ip, ColorConv.HSV2RGB(hue, saturation, value));
+        } catch (err) {
+            this.log.warn(`Cannot set hue for ${client_ip}: ${err}`);
+        }
     }
 
     WIZ__SET_COLOR_RGB(client_ip, rgb) {

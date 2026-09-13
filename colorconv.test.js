@@ -3,6 +3,15 @@
 const assert = require('node:assert/strict');
 const ColorConv = require('./lib/colorconv.js');
 
+describe('RGB hue reporting', () => {
+    it('reports the actual hue instead of a constant fallback', () => {
+        assert.equal(ColorConv.RGB2HUE(255, 0, 0), 0);
+        assert.equal(ColorConv.RGB2HUE(0, 255, 0), 120);
+        assert.equal(ColorConv.RGB2HUE(0, 0, 255), 240);
+        assert.equal(ColorConv.RGB2HUE(0, 0, 0), 0);
+    });
+});
+
 describe('Hexadecimal to RGB conversion', () => {
     it('converts six-digit hexadecimal colors', () => {
         assert.deepEqual(ColorConv.HEX2RGB('ff8040'), [255, 128, 64]);
