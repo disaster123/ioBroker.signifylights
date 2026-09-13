@@ -207,9 +207,8 @@ class Signifylights extends utils.Adapter {
                 id: id,
                 params: params,
             },
-            message_buffer: '',
+            message_buffer: Buffer.from(JSON.stringify({ method, id, params })),
         };
-        data['message_buffer'] = new Buffer(JSON.stringify(data.message));
 
         try {
             this.MESSAGEQUEUE[ip][queueID] = data;
