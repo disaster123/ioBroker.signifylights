@@ -3,6 +3,23 @@
 const assert = require('node:assert/strict');
 const ColorConv = require('./lib/colorconv.js');
 
+describe('HSV to RGB conversion', () => {
+    it('covers all six hue sectors and the hue wraparound', () => {
+        const expected = [[255, 0, 0], [255, 255, 0], [0, 255, 0], [0, 255, 255], [0, 0, 255], [255, 0, 255]];
+        for (const [index, rgb] of expected.entries()) {
+            assert.deepEqual(ColorConv.HSV2RGB(index * 60, 100, 100), rgb);
+        }
+        assert.deepEqual(ColorConv.HSV2RGB(360, 100, 100), [255, 0, 0]);
+        assert.deepEqual(ColorConv.HSV2RGB(120, 0, 100), [255, 255, 255]);
+        assert.deepEqual(ColorConv.HSV2RGB(120, 100, 0), [0, 0, 0]);
+    });
+
+    it('keeps invalid hue inputs non-finite', () => {
+        assert.deepEqual(ColorConv.HSV2RGB(NaN, 100, 100), [NaN, NaN, NaN]);
+        assert.deepEqual(ColorConv.HSV2RGB(-60, 100, 100), [NaN, NaN, NaN]);
+    });
+});
+
 describe('RGB to HSL conversion', () => {
     it('converts primary and achromatic colors', () => {
         assert.deepEqual(ColorConv.RGB2HSL(255, 0, 0), [0, 100, 50]);
