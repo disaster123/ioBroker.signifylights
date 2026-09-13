@@ -16,3 +16,17 @@ describe('RGB to HSL conversion', () => {
         assert.ok(Number.isNaN(ColorConv.RGB2HSL(NaN, 0, 0)[0]));
     });
 });
+
+describe('RGB to HSV conversion', () => {
+    it('converts primary and achromatic colors', () => {
+        assert.deepEqual(ColorConv.RGB2HSV(255, 0, 0), [0, 100, 100]);
+        assert.deepEqual(ColorConv.RGB2HSV(0, 255, 0), [120, 100, 100]);
+        assert.deepEqual(ColorConv.RGB2HSV(0, 0, 255), [240, 100, 100]);
+        assert.deepEqual(ColorConv.RGB2HSV(0, 0, 0), [0, 0, 0]);
+        assert.deepEqual(ColorConv.RGB2HSV(255, 255, 255), [0, 0, 100]);
+    });
+
+    it('keeps non-finite RGB inputs non-finite', () => {
+        assert.ok(Number.isNaN(ColorConv.RGB2HSV(NaN, 0, 0)[0]));
+    });
+});
