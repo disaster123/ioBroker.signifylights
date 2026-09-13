@@ -33,3 +33,29 @@ describe('Device module name validation', () => {
         }
     });
 });
+
+describe('Device registration state validation', () => {
+    it('does not fail when registration state is null or undefined', async () => {
+        for (const value of [null, undefined]) {
+            const { adapter, errors } = deviceAdapter('');
+            adapter.config.register_devices = true;
+            adapter.getStateAsync = async () => value;
+            const registrations = [];
+            adapter.WIZ__REGISTER = host => registrations.push(host);
+            await adapter.WIZ__INIT_DEVICE('192.0.2.1', 'Test light');
+            assert.deepEqual(errors, []);
+            assert.deepEqual(registrations, []);
+        }
+    });
+
+    it('registers devices with an enabled registration state', async () => {
+        const { adapter, errors } = deviceAdapter('');
+        adapter.config.register_devices = true;
+        adapter.getStateAsync = async id => id.endsWith('system.register') ? { val: true } : null;
+        const registrations = [];
+        adapter.WIZ__REGISTER = host => registrations.push(host);
+        await adapter.WIZ__INIT_DEVICE('192.0.2.1', 'Test light');
+        assert.deepEqual(errors, []);
+        assert.deepEqual(registrations, ['192.0.2.1']);
+    });
+});

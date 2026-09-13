@@ -602,7 +602,7 @@ class Signifylights extends utils.Adapter {
             }
 
             const reg = await this.WIZ__GET_IOB_STATE(ip, 'system.register');
-            if (this.config.register_devices == true && reg !== null && reg.val == true) {
+            if (this.config.register_devices == true && reg != null && reg.val == true) {
                 this.WIZ__REGISTER(ip);
             }
             this.WIZ__GETSYSTEMCONFIG(ip);
