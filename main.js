@@ -7,7 +7,7 @@
 const utils = require('@iobroker/adapter-core');
 // const objectHelper = require('@apollon/iobroker-tools').objectHelper; // Common adapter utils
 // const EventEmitter = require('node:events').EventEmitter;
-const uuid = require('uuid');
+const { randomUUID } = require('node:crypto');
 
 const ip = require('ip');
 // const os = require("node:os");
@@ -197,7 +197,7 @@ class Signifylights extends utils.Adapter {
     }
 
     WIZ__QUEUE_MESSAGE(method, id, params, ip, port) {
-        const queueID = uuid.v4();
+        const queueID = randomUUID();
         const data = {
             ip: ip,
             port: port,
