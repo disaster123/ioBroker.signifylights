@@ -541,7 +541,7 @@ class Signifylights extends utils.Adapter {
 
             const obj = await this.getStateAsync(`${deviceId}.system.moduleName`);
 
-            if (obj && obj.val.length > 5) {
+            if (obj && typeof obj.val === 'string' && obj.val.length > 5) {
                 deviceType = obj.val;
                 //this.log.warn(deviceType);
             }
