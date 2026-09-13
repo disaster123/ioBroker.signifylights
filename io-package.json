@@ -162,6 +162,7 @@
     ]
   },
   "native": {
+    "devices": [],
     "udpip": "",
     "udpmac": "",
     "bind_ip": "0.0.0.0",

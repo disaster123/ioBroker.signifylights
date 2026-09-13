@@ -4,7 +4,9 @@
 
 import { native } from "../io-package.json";
 
-type _AdapterConfig = typeof native;
+type _AdapterConfig = Omit<typeof native, "devices"> & {
+    devices: { active: boolean; ip: string; name: string }[];
+};
 
 // Augment the globally declared type ioBroker.AdapterConfig
 declare global {
