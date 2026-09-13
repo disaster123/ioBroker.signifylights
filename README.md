@@ -24,6 +24,12 @@ Reference to a company or a product name does not imply approval or recommendati
 that company or product to the exclusion of others.
 
 ## Changelog
+### 1.0.2 (2026-09-13)
+- (disaster123) Hue changes now preserve the current saturation and brightness.
+- (disaster123) Corrected configuration defaults and improved handling of missing device states.
+- (disaster123) Replaced the UUID dependency with Node.js built-in UUID generation.
+- (disaster123) Updated development tools and made type checks and regression tests mandatory in CI.
+
 ### 1.0.1 (2026-09-12)
 - (iobroker-bot) Adapter requires node.js >= 22 now.
 - (iobroker-bot) Adapter requires js-controller >= 6.0.11 now.
@@ -38,11 +44,6 @@ that company or product to the exclusion of others.
 
 ### 0.4.4 (2025-04-21)
 * fix minimum deps
-
-### 0.4.3 (2025-03-25)
-* added ESP25_MHORGB_01
-* added ESP24_SHRGB_01
-* fix hex color
 
 [Older changelogs can be found there](CHANGELOG_OLD.md)
 

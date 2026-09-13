@@ -1,9 +1,22 @@
 {
   "common": {
     "name": "signifylights",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "tier": 3,
     "news": {
+      "1.0.2": {
+        "en": "Hue changes now preserve the current saturation and brightness.\nCorrected configuration defaults and improved handling of missing device states.\nReplaced the UUID dependency with Node.js built-in UUID generation.\nUpdated development tools and made type checks and regression tests mandatory in CI.",
+        "de": "Änderungen des Farbtons behalten nun die aktuelle Sättigung und Helligkeit bei.\nKonfigurationsdefaults korrigiert und den Umgang mit fehlenden Gerätestatus verbessert.\nDie UUID-Abhängigkeit durch die integrierte UUID-Erzeugung von Node.js ersetzt.\nEntwicklungswerkzeuge aktualisiert und Typprüfungen sowie Regressionstests in CI verpflichtend gemacht.",
+        "ru": "Изменения оттенка теперь сохраняют текущую насыщенность и яркость.\nИсправлены настройки по умолчанию и улучшена обработка отсутствующих состояний устройства.\nЗаменена зависимость UUID встроенной генерацией UUID в Node.js.\nОбновлены инструменты разработки и введены обязательные проверки типов и регрессионные тесты в CI.",
+        "pt": "Mudanças de matiz agora preservam a saturação e o brilho atuais.\nCorrigidos os valores padrão de configuração e melhorado o tratamento de estados ausentes do dispositivo.\nSubstituída a dependência UUID pela geração de UUID integrada do Node.js.\nAtualizadas as ferramentas de desenvolvimento e tornadas obrigatórias as verificações de tipos e os testes de regressão em CI.",
+        "nl": "Veranderingen in de tint behouden nu de huidige verzadiging en helderheid.\nGecorrigeerde configuratiestandaarden en verbeterde verwerking van ontbrekende apparaatstatussen.\nDe UUID-afhankelijkheid is vervangen door de ingebouwde UUID-generatie van Node.js.\nDe ontwikkelingsinstrumenten zijn bijgewerkt en typecontroles en regressietests verplicht gesteld in CI.",
+        "fr": "Les changements de teinte préservent la saturation et la luminosité actuelles.\nConfiguration par défaut corrigée et gestion améliorée des états manquants des appareils.\nLa dépendance UUID a été remplacée par la génération d'UUID intégrée à Node.js.\nOutils de développement mis à jour et vérifications de types et tests de régression rendus obligatoires dans CI.",
+        "it": "La tonalità ora mantiene la saturazione e la luminosità attuali.\nImpostazioni predefinite corrette e gestione degli stati mancanti.\nSostituita la dipendenza UUID con la generazione UUID integrata di Node.js.\nStrumenti di sviluppo aggiornati e test di tipo e regressione obbligatori in CI.",
+        "es": "Los cambios de tono ahora conservan la saturación y el brillo actuales.\nSe corrigieron los valores por defecto y se mejoró la gestión de los estados faltantes del dispositivo.\nSe sustituyó la dependencia UUID por la generación de UUID integrada en Node.js.\nSe actualizaron las herramientas de desarrollo y se hicieron obligatorias las comprobaciones de tipos y las pruebas de regresión en CI.",
+        "pl": "Zmiany odcienia zachowują teraz bieżące nasycenie i jasność.\nPoprawiono ustawienia domyślne konfiguracji i poprawiono obsługę brakujących stanów urządzeń.\nZastąpiono zależność UUID wbudowanym generowaniem UUID Node.js.\nZaktualizowano narzędzia programistyczne i wprowadzono obowiązkowe kontrole typu i testy regresji w CI.",
+        "uk": "Зміни відтінку тепер зберігають поточну насиченість і яскравість.\nВиправлено налаштування за замовчуванням та покращено обробку відсутніх станів пристрою.\nЗамінено залежність UUID на вбудовану генерацію UUID Node.js.\nОновлені інструменти розробки та зробили перевірку типів та регресійні тести обов'язковими в CI.",
+        "zh-cn": "色相更改现在可以保持当前的饱和度和亮度。\n更正了配置默认值并改进了对缺失设备状态的处理。\n将 UUID 依赖项替换为 Node.js 内置 UUID 生成。\n更新了开发工具，并在 CI 中强制进行类型检查和回归测试。"
+      },
       "1.0.1": {
         "en": "Adapter requires node.js >= 22 now.\nAdapter requires js-controller >= 6.0.11 now.",
         "de": "Adapter benötigt jetzt node.js >= 22.\nAdapter benötigt jetzt JS-Controller >= 6.0.11.",
@@ -81,19 +94,6 @@
         "pl": "implementuj responsywny projekt na stronie konfiguracyjnej (thx simatec)",
         "uk": "реалізувати чуйний дизайн на сторінці налаштувань (thx simatec)",
         "zh-cn": "在配置页面中执行响应性设计 (thx simatec)"
-      },
-      "0.4.1": {
-        "en": "fix eslint 9.x\nadd ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\nadd ESP25_SHRGB_01: added (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nvarious improvements from adapter check",
-        "de": "fix eslint 9.x\nESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL hinzugefügt\nESP25_SHRGB_01: hinzugefügt (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nverschiedene Verbesserungen aus der Adapterprüfung",
-        "ru": "исправить eslint 9.x\nдобавить ESP26_SHRGB_01: Wi-Fi BLE ST64 E27 822-65 RGB CL\nдобавить ESP25_SHRGB_01: добавлен (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nразличные улучшения из проверки адаптера",
-        "pt": "corrigir eslint 9.x\nadicionar ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\nadicionar ESP25_SHRGB_01: adicionado (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nvárias melhorias da verificação do adaptador",
-        "nl": "repareren eslint 9.x\nESP26_SHRGB_01 toevoegen: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\nESP25_SHRGB_01 toevoegen: toegevoegd (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\ndiverse verbeteringen van adaptercontrole",
-        "fr": "fixer eslint 9.x\najouter ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\najouter ESP25_SHRGB_01: ajouté (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\ndiverses améliorations de vérification de l'adaptateur",
-        "it": "fix eslint 9.x\naggiungi ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\naggiungere ESP25_SHRGB_01: aggiunto (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nvarie miglioramenti dal controllo dell'adattatore",
-        "es": "fijar eslint 9.x\nañadir ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\nañadir ESP25_SHRGB_01: añadido (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nvarias mejoras de la comprobación del adaptador",
-        "pl": "fix eslint 9.x\ndodaj ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\ndodaj ESP25_SHRGB_01: dodany (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nróżne ulepszenia z kontroli adaptera",
-        "uk": "фіксатор eslint 9.x\ndodaj ESP26_SHRGB_01: Wi-Fi BLE ST64 E27 822-65 RGB CL\ndodaj ESP25_SHRGB_01: доданий (WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\nрізні покращення з перевірки адаптера",
-        "zh-cn": "修复 eslint 9.x\n添加 ESP26_SHRGB_01: WIZ Wi-Fi BLE ST64 E27 822-65 RGB CL\n添加 ESP25_SHRGB_01: 添加(WiZ Wi-Fi BLE 60W A60 E27 822-65 RGB)\n适配器检查中的各种改进"
       }
     },
     "titleLang": {
