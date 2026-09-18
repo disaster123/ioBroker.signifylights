@@ -37,7 +37,7 @@ jobs:
       - name: Run JavaScript regression tests
         run: npm run test:js
 
-  # Runs adapter tests on all supported node versions and OSes
+  # Runs Linux tests on every push/PR and all supported OSes on release tags
   adapter-tests:
     needs: [check-and-lint]
     if: contains(github.event.head_commit.message, '[skip ci]') == false
@@ -47,6 +47,13 @@ jobs:
       matrix:
         node-version: [22.x, 24.x, 26.x]
         os: [ubuntu-latest, windows-latest, macos-latest]
+        release:
+          - ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') }}
+        exclude:
+          - os: windows-latest
+            release: false
+          - os: macos-latest
+            release: false
 
     steps:
       - uses: ioBroker/testing-action-adapter@v1
