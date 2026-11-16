@@ -23,6 +23,32 @@ or Philips. All brand and product names are trademarks or registered trademarks 
 Reference to a company or a product name does not imply approval or recommendation of 
 that company or product to the exclusion of others.
 
+## UDP response diagnostics
+
+Device rejections (including Invalid params `-32602`, Security error `-32605`, and
+`success: false`) stop retries only for a matched request and do not mark the lamp
+offline or acknowledge the requested write. Logs contain the source IP/port,
+known method, error code and a standard error description. Arbitrary device error
+messages and payloads are omitted because they may contain credentials. Security
+errors currently require separate investigation; authentication/HMAC support is
+not part of this change.
+
+Replies without an ID can complete only one unambiguous pending request with the
+same source IP, port and method. Explicit IDs take priority; the legacy getPilot
+request ID `0` remains a wildcard only when no exact ID matches. Other explicit
+ID mismatches never complete a request. Ambiguous id-less requests remain blocked
+from id-less matching until they leave the queue. Receipt still counts as evidence
+that the device is reachable, so retry exhaustion reports "no matching reply"
+rather than marking a responding device offline.
+
+After completion or timeout, id-less matching for that device/port/method is
+suppressed for one retry window (currently 10 seconds) to reduce the risk of delayed
+or repeated replies completing a later request. Explicit IDs remain usable during
+this window. This can cause rapid consecutive requests on id-less firmware to
+exhaust retries despite replies. UDP provides no way to distinguish a delayed
+id-less reply from a fresh one with identical metadata; duplicates delayed beyond
+the guard window or across adapter restarts cannot be reliably identified.
+
 ## Changelog
 ### 1.0.2 (2026-09-13)
 - (disaster123) Hue changes now preserve the current saturation and brightness.

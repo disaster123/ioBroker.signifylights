@@ -37,6 +37,7 @@ class Signifylights extends utils.Adapter {
         this.SOCKETS = {};
         this.ISONLINE = {};
         this.MESSAGEQUEUE = {};
+        this.idlessReplyGuards = {};
         this.ipmap = {};
         this.maxAttempt = 10;
         this.sendTimeout = 1000;
@@ -89,73 +90,115 @@ class Signifylights extends utils.Adapter {
     }
 
     WIZ__RECEIVE_MESSAGE(msg, client) {
-        // QUEUE löschen
+        const objid = this.ipmap[client.address] || client.address;
+        const queue = this.MESSAGEQUEUE[objid] || {};
+        const endpointCandidates = Object.entries(queue).filter(([, data]) => data.port === client.port);
+        // Receipt is evidence of reachability, never evidence that a write succeeded.
+        for (const [, data] of endpointCandidates) {
+            data.replyReceived = true;
+        }
+        if (objid in this.MESSAGEQUEUE) {
+            this.WIZ__UPDATE_STATES(objid, { online: true });
+        }
+        const source = `${client.address}:${client.port}`;
         try {
             msg = JSON.parse(msg);
-        } catch (err) {
-            this.log.error(err);
+        } catch {
+            this.log.warn(`UDP ${source}: malformed JSON reply; check device firmware/network`);
+            return;
         }
-        let objid = client.address;
-        if (client.address in this.ipmap) {
-            objid = this.ipmap[client.address];
+        if (!msg || typeof msg !== 'object' || Array.isArray(msg)) {
+            this.log.warn(`UDP ${source}: non-object JSON reply; check device firmware`);
+            return;
         }
-        if ('result' in msg) {
+        // Only known method names and standard error descriptions are safe to log.
+        const methods = ['getPilot', 'setPilot', 'getSystemConfig', 'registration', 'syncPilot'];
+        const method = methods.includes(msg.method) ? msg.method : 'unknown';
+        if (method === 'syncPilot' && msg.params && typeof msg.params === 'object' && !Array.isArray(msg.params)) {
             if (objid in this.MESSAGEQUEUE) {
-                //this.log.debug(JSON.stringify(client));
-                for (const queueID in this.MESSAGEQUEUE[objid]) {
-                    const data = this.MESSAGEQUEUE[objid][queueID];
-                    if (msg.method == data.message.method && client.port == data.port) {
-                        if (msg.method == 'getPilot' && (msg.id == data.message.id || data.message.id == 0)) {
-                            delete this.MESSAGEQUEUE[objid][queueID];
-                            //this.log.debug(`[getPilot] ${client.address}:${client.port} success`);
-
-                            //msg.result = AllDeviceAttributes.override_with_null_not_exists()
-                            //Object.assign(AllDeviceAttributes.led_empty, msg.result);
-
-                            this.WIZ__UPDATE_STATES(objid, msg.result);
-                        } else if (
-                            msg.method == 'setPilot' &&
-                            msg.id == data.message.id &&
-                            msg.result.success == true
-                        ) {
-                            delete this.MESSAGEQUEUE[objid][queueID];
-                            //this.log.debug(`[setPilot] ${client.address}:${client.port} success`);
-                        } else if (msg.method == 'getSystemConfig' && msg.id == data.message.id && 'result' in msg) {
-                            delete this.MESSAGEQUEUE[objid][queueID];
-                            //this.log.debug(`[getSystemConfig] ${client.address}:${client.port} success`);
-                            this.WIZ__UPDATE_STATES(objid, msg.result);
-                        } else if (
-                            msg.method == 'registration' &&
-                            msg.id == data.message.id &&
-                            'result' in msg &&
-                            msg.result.success == true
-                        ) {
-                            delete this.MESSAGEQUEUE[objid][queueID];
-                            //this.log.debug(`[registration] ${client.address}:${client.port} success`);
-                            this.WIZ__UPDATE_STATES(objid, { ip: client.address });
-                        }
-                    }
-                }
-            } else {
-                this.log.debug(`No QUEUE for Client ${client.address}:${client.port} found`);
-            }
-        } else if ('params' in msg && msg.method == 'syncPilot') {
-            if (objid in this.MESSAGEQUEUE) {
-                client.port = 38899;
-                //this.log.debug(`[syncPilot] ${client.address}:${client.port} received`);
                 this.WIZ__UPDATE_STATES(objid, msg.params);
-
-                const message = new Buffer(`{"method":"syncPilot","result":{"mac":"${this.MAC}"}}`);
-
-                //setTimeout(function() {
-                this.SOCKETS[client.port].send(message, 0, message.length, client.port, client.address, err => {
+                const message = Buffer.from(JSON.stringify({ method: 'syncPilot', result: { mac: this.MAC } }));
+                this.SOCKETS[38899].send(message, 0, message.length, 38899, client.address, err => {
                     if (err) {
-                        throw err;
+                        this.log.warn(`UDP ${source} syncPilot: acknowledgement send failed`);
                     }
                 });
-                //that.log.debug(`[syncPilot] ${client.address}:${client.port} answerd`);
-                //}, 5000);
             }
+            return;
+        }
+        const candidates = endpointCandidates.filter(([, data]) => data.message.method === msg.method);
+        const hasID = Object.hasOwn(msg, 'id');
+        let matches = hasID ? candidates.filter(([, data]) => msg.id === data.message.id) : candidates;
+        // Legacy getPilot requests use ID 0 as a wildcard, but an exact ID always wins.
+        if (hasID && matches.length === 0 && typeof msg.id === 'number' && method === 'getPilot') {
+            matches = candidates.filter(([, data]) => data.message.id === 0);
+        }
+        const guardKey = `${objid}:${client.port}:${method}`;
+        const guarded =
+            !hasID &&
+            (this.idlessReplyGuards[guardKey] > Date.now() || candidates.some(([, data]) => data.idlessBlocked));
+        const ambiguous = matches.length > 1;
+        if (ambiguous && !hasID) {
+            // These requests remain indistinguishable even if one later leaves the queue.
+            for (const [, data] of candidates) {
+                data.idlessBlocked = true;
+            }
+        }
+        const resultValid = msg.result && typeof msg.result === 'object' && !Array.isArray(msg.result);
+        const hasError = Object.hasOwn(msg, 'error');
+        const errorValid =
+            msg.error && typeof msg.error === 'object' && !Array.isArray(msg.error) && Number.isInteger(msg.error.code);
+        const rejected = errorValid || (resultValid && msg.result.success === false);
+        let detail = '';
+        if (rejected) {
+            const descriptions = {
+                '-32700': 'Parse error',
+                '-32600': 'Invalid request',
+                '-32601': 'Method not found',
+                '-32602': 'Invalid params; check command parameters',
+                '-32603': 'Internal error',
+                '-32605': 'Security error; check device authentication requirements',
+            };
+            const code = Number.isInteger(msg.error?.code) ? msg.error.code : 'unknown';
+            const description =
+                descriptions[code] ||
+                (Object.hasOwn(msg, 'error')
+                    ? 'Device error (untrusted message omitted)'
+                    : 'Device reported success=false');
+            detail = `: rejected code=${code} ${description}`;
+        }
+        if (matches.length !== 1 || guarded) {
+            const reason = ambiguous
+                ? 'ambiguous reply'
+                : guarded
+                  ? 'uncorrelated id-less reply (possible delayed/repeated response)'
+                  : 'unmatched reply (method/port/ID)';
+            this.log.warn(`UDP ${source} ${method}: ${reason}${detail}; pending requests retained`);
+            return;
+        }
+        const [queueID, data] = matches[0];
+        const success =
+            resultValid &&
+            (['getPilot', 'getSystemConfig'].includes(method) ||
+                (['setPilot', 'registration'].includes(method) && msg.result.success === true));
+        if ((hasError && !errorValid) || (!rejected && !success)) {
+            this.log.warn(`UDP ${source} ${method}: invalid result; pending request retained`);
+            return;
+        }
+        delete queue[queueID];
+        // A duplicate id-less datagram must not consume a subsequent request of this method.
+        this.idlessReplyGuards[guardKey] = Date.now() + this.maxAttempt * this.sendTimeout;
+        for (const [, other] of candidates) {
+            if (other !== data) {
+                other.idlessBlocked = true;
+            }
+        }
+        if (rejected) {
+            this.log.warn(`UDP ${source} ${method}${detail}; retries stopped`);
+        } else if (['getPilot', 'getSystemConfig'].includes(method)) {
+            this.WIZ__UPDATE_STATES(objid, msg.result);
+        } else if (method === 'registration') {
+            this.WIZ__UPDATE_STATES(objid, { ip: client.address });
         }
     }
 
@@ -202,6 +245,9 @@ class Signifylights extends utils.Adapter {
             ip: ip,
             port: port,
             attempt: 0,
+            replyReceived: false,
+            sendFailed: false,
+            idlessBlocked: false,
             message: {
                 method: method,
                 id: id,
@@ -248,7 +294,11 @@ class Signifylights extends utils.Adapter {
                 realip,
                 err => {
                     if (err) {
-                        that.log.warn(`Nachricht ${queueID} konnte nicht gesendet werden: ${err}`);
+                        const data = that.MESSAGEQUEUE[ip]?.[queueID];
+                        if (data) {
+                            data.sendFailed = true;
+                            that.log.warn(`UDP ${realip}:${data.port} ${data.message.method}: send failed`);
+                        }
                     }
                 },
             );
@@ -266,9 +316,19 @@ class Signifylights extends utils.Adapter {
             queueID in that.MESSAGEQUEUE[ip] &&
             that.MESSAGEQUEUE[ip][queueID]['attempt'] >= that.maxAttempt
         ) {
-            that.log.warn(`Nachricht ${queueID} ${ip} ${realip} hat keine Antwort erhalten`);
+            const data = that.MESSAGEQUEUE[ip][queueID];
+            const reason = data.replyReceived
+                ? 'no matching reply (device replied)'
+                : data.sendFailed
+                  ? 'send failure; no reply received'
+                  : 'no reply received';
+            that.log.warn(`UDP ${realip}:${data.port} ${data.message.method}: retries exhausted; ${reason}`);
+            that.idlessReplyGuards[`${ip}:${data.port}:${data.message.method}`] =
+                Date.now() + that.maxAttempt * that.sendTimeout;
             delete that.MESSAGEQUEUE[ip][queueID];
-            that.WIZ__UPDATE_STATES(ip, { online: false });
+            if (!data.replyReceived) {
+                that.WIZ__UPDATE_STATES(ip, { online: false });
+            }
         }
     }
 
