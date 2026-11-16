@@ -37,7 +37,6 @@ class Signifylights extends utils.Adapter {
         this.SOCKETS = {};
         this.ISONLINE = {};
         this.MESSAGEQUEUE = {};
-        this.idlessReplyGuards = {};
         this.ipmap = {};
         this.maxAttempt = 10;
         this.sendTimeout = 1000;
@@ -93,14 +92,19 @@ class Signifylights extends utils.Adapter {
         const objid = this.ipmap[client.address] || client.address;
         const queue = this.MESSAGEQUEUE[objid] || {};
         const endpointCandidates = Object.entries(queue).filter(([, data]) => data.port === client.port);
-        // Receipt is evidence of reachability, never evidence that a write succeeded.
+        const source = `${client.address}:${client.port}`;
+        if (!this.PORTS.includes(client.port) && endpointCandidates.length === 0) {
+            this.log.warn(`UDP ${source}: unexpected source port; reply ignored`);
+            return;
+        }
+        // Endpoint traffic proves reachability for concurrent requests, not that any
+        // unrelated method received a response. Keep that evidence separate below.
         for (const [, data] of endpointCandidates) {
-            data.replyReceived = true;
+            data.endpointReceived = true;
         }
         if (objid in this.MESSAGEQUEUE) {
             this.WIZ__UPDATE_STATES(objid, { online: true });
         }
-        const source = `${client.address}:${client.port}`;
         try {
             msg = JSON.parse(msg);
         } catch {
@@ -133,16 +137,8 @@ class Signifylights extends utils.Adapter {
         if (hasID && matches.length === 0 && typeof msg.id === 'number' && method === 'getPilot') {
             matches = candidates.filter(([, data]) => data.message.id === 0);
         }
-        const guardKey = `${objid}:${client.port}:${method}`;
-        const guarded =
-            !hasID &&
-            (this.idlessReplyGuards[guardKey] > Date.now() || candidates.some(([, data]) => data.idlessBlocked));
-        const ambiguous = matches.length > 1;
-        if (ambiguous && !hasID) {
-            // These requests remain indistinguishable even if one later leaves the queue.
-            for (const [, data] of candidates) {
-                data.idlessBlocked = true;
-            }
+        for (const [, data] of hasID ? matches : candidates) {
+            data.replyReceived = true;
         }
         const resultValid = msg.result && typeof msg.result === 'object' && !Array.isArray(msg.result);
         const hasError = Object.hasOwn(msg, 'error');
@@ -167,16 +163,37 @@ class Signifylights extends utils.Adapter {
                     : 'Device reported success=false');
             detail = `: rejected code=${code} ${description}`;
         }
-        if (matches.length !== 1 || guarded) {
+        // Successful legacy polls are equivalent read-only snapshots. One snapshot
+        // can satisfy all pending ID=0 polls, but must never consume a nonzero ID
+        // when an id-less reply cannot distinguish it from a wildcard poll.
+        const wildcardPolls = candidates.filter(([, data]) => data.message.id === 0);
+        if (!hasID && method === 'getPilot' && resultValid && !hasError && !rejected && wildcardPolls.length > 0) {
+            matches = wildcardPolls;
+        }
+        const pollSnapshot =
+            method === 'getPilot' &&
+            resultValid &&
+            !hasError &&
+            !rejected &&
+            matches.length > 0 &&
+            matches.every(([, data]) => data.message.id === 0);
+        const ambiguous = matches.length > 1 && !pollSnapshot;
+        if (ambiguous && !hasID && method !== 'getPilot') {
+            // These concurrent requests stay indistinguishable after one times out.
+            for (const [, data] of candidates) {
+                data.idlessBlocked = true;
+            }
+        }
+        const blocked = !hasID && !pollSnapshot && candidates.some(([, data]) => data.idlessBlocked);
+        if (matches.length === 0 || ambiguous || blocked) {
             const reason = ambiguous
                 ? 'ambiguous reply'
-                : guarded
-                  ? 'uncorrelated id-less reply (possible delayed/repeated response)'
+                : blocked
+                  ? 'uncorrelated id-less reply (previous concurrency ambiguity)'
                   : 'unmatched reply (method/port/ID)';
             this.log.warn(`UDP ${source} ${method}: ${reason}${detail}; pending requests retained`);
             return;
         }
-        const [queueID, data] = matches[0];
         const success =
             resultValid &&
             (['getPilot', 'getSystemConfig'].includes(method) ||
@@ -185,13 +202,8 @@ class Signifylights extends utils.Adapter {
             this.log.warn(`UDP ${source} ${method}: invalid result; pending request retained`);
             return;
         }
-        delete queue[queueID];
-        // A duplicate id-less datagram must not consume a subsequent request of this method.
-        this.idlessReplyGuards[guardKey] = Date.now() + this.maxAttempt * this.sendTimeout;
-        for (const [, other] of candidates) {
-            if (other !== data) {
-                other.idlessBlocked = true;
-            }
+        for (const [queueID] of matches) {
+            delete queue[queueID];
         }
         if (rejected) {
             this.log.warn(`UDP ${source} ${method}${detail}; retries stopped`);
@@ -246,6 +258,7 @@ class Signifylights extends utils.Adapter {
             port: port,
             attempt: 0,
             replyReceived: false,
+            endpointReceived: false,
             sendFailed: false,
             idlessBlocked: false,
             message: {
@@ -319,14 +332,14 @@ class Signifylights extends utils.Adapter {
             const data = that.MESSAGEQUEUE[ip][queueID];
             const reason = data.replyReceived
                 ? 'no matching reply (device replied)'
-                : data.sendFailed
-                  ? 'send failure; no reply received'
-                  : 'no reply received';
+                : data.endpointReceived
+                  ? 'no matching reply (device traffic received)'
+                  : data.sendFailed
+                    ? 'send failure; no reply received'
+                    : 'no reply received';
             that.log.warn(`UDP ${realip}:${data.port} ${data.message.method}: retries exhausted; ${reason}`);
-            that.idlessReplyGuards[`${ip}:${data.port}:${data.message.method}`] =
-                Date.now() + that.maxAttempt * that.sendTimeout;
             delete that.MESSAGEQUEUE[ip][queueID];
-            if (!data.replyReceived) {
+            if (!data.endpointReceived) {
                 that.WIZ__UPDATE_STATES(ip, { online: false });
             }
         }

@@ -33,21 +33,29 @@ messages and payloads are omitted because they may contain credentials. Security
 errors currently require separate investigation; authentication/HMAC support is
 not part of this change.
 
-Replies without an ID can complete only one unambiguous pending request with the
-same source IP, port and method. Explicit IDs take priority; the legacy getPilot
-request ID `0` remains a wildcard only when no exact ID matches. Other explicit
-ID mismatches never complete a request. Ambiguous id-less requests remain blocked
-from id-less matching until they leave the queue. Receipt still counts as evidence
-that the device is reachable, so retry exhaustion reports "no matching reply"
-rather than marking a responding device offline.
+Replies without an ID normally require a unique pending request with the same
+source IP, port and method. Ambiguous concurrent requests are retained, and (except
+for getPilot snapshots) remain ineligible for id-less matching until they leave
+the queue. Explicit IDs take priority; the legacy getPilot request ID `0` remains
+a wildcard only when no exact ID matches. Other explicit ID mismatches never
+complete a request.
 
-After completion or timeout, id-less matching for that device/port/method is
-suppressed for one retry window (currently 10 seconds) to reduce the risk of delayed
-or repeated replies completing a later request. Explicit IDs remain usable during
-this window. This can cause rapid consecutive requests on id-less firmware to
-exhaust retries despite replies. UDP provides no way to distinguish a delayed
-id-less reply from a fresh one with identical metadata; duplicates delayed beyond
-the guard window or across adapter restarts cannot be reliably identified.
+A successful getPilot snapshot can satisfy all equivalent pending ID `0` polls
+and updates the read states once. An id-less snapshot leaves any nonzero-ID polls
+pending when wildcard polls are present. Rejections still require a unique match.
+Sequential id-less requests and rapid polling have no cooldown, including after
+rejections or retry exhaustion. Delayed or duplicated id-less UDP replies cannot
+be distinguished from fresh replies to a later request with identical metadata;
+this inherent limitation also applies after retries and adapter restarts.
+
+Traffic from an expected source IP/port establishes endpoint reachability for
+pending requests on that endpoint, separately from method-specific receipt
+tracking. A reply for one method does not claim correlation with unrelated methods,
+but their exhaustion will not mark a device offline after traffic was received.
+Malformed traffic is also reachability evidence, not a successful response.
+Unexpected source ports are ignored without refreshing reachability (known protocol
+ports 38899/38900 and explicitly pending destinations are accepted). True silence
+retains the existing retry and offline behavior.
 
 ## Changelog
 ### 1.0.2 (2026-09-13)
